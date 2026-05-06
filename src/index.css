@@ -1,0 +1,10 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+@layer components {
+  .card{@apply rounded-2xl bg-white dark:bg-slate-900 shadow-sm p-4;}
+  .btn{@apply inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-indigo-500 text-white;}
+  .tile{@apply rounded-xl bg-slate-100 dark:bg-slate-800 h-20 text-2xl font-bold;}
+  .input{@apply mt-1 block w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 p-2;}
+  .navbtn{@apply px-3 py-2 rounded-xl inline-flex items-center justify-center gap-2 text-sm;}
+  .navbtn.active{@apply bg-indigo-500 text-white;}
+}
+body{font-family: Inter, system-ui, sans-serif;}
