@@ -1,14 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useAppStore } from '../../store/useAppStore';
-
-const makeGrid=(n:number)=>[...Array(n*n).keys()].map(i=>i+1).map(v=>v===n*n?0:v);
-export function NumberPuzzle(){
-  const [n,setN]=useState(3); const [tiles,setTiles]=useState<number[]>(makeGrid(3)); const [moves,setMoves]=useState(0); const [secs,setSecs]=useState(0);
-  const addLeaderboard=useAppStore(s=>s.addLeaderboard);
-  useEffect(()=>{const t=setInterval(()=>setSecs(s=>s+1),1000); return()=>clearInterval(t);},[]);
-  const solved = useMemo(()=>tiles.every((v,i)=>v===makeGrid(n)[i]),[tiles,n]);
-  useEffect(()=>{ if(solved&&moves>0) addLeaderboard({game:'number-puzzle',playerName:'Local',scoreLabel:`${secs}s/${moves} moves`,meta:{size:n}});},[solved,moves,secs,n,addLeaderboard]);
-  const shuffle=()=>setTiles([...tiles].sort(()=>Math.random()-0.5));
-  const move=(idx:number)=>{ const e=tiles.indexOf(0); const r=Math.floor(idx/n), c=idx%n, er=Math.floor(e/n), ec=e%n; if(Math.abs(r-er)+Math.abs(c-ec)!==1) return; const t=[...tiles]; [t[idx],t[e]]=[t[e],t[idx]]; setTiles(t); setMoves(m=>m+1);};
-  return <div><div className='flex gap-2 mb-2'><button className='btn' onClick={()=>{setN(3);setTiles(makeGrid(3));}}>3x3</button><button className='btn' onClick={()=>{setN(4);setTiles(makeGrid(4));}}>4x4</button><button className='btn' onClick={shuffle}>Shuffle</button></div><p>Time {secs}s | Moves {moves}</p><div className='grid gap-2' style={{gridTemplateColumns:`repeat(${n}, minmax(0,1fr))`, maxWidth: n===3?260:340}}>{tiles.map((v,i)=><button key={i} onClick={()=>move(i)} className='h-16 rounded-xl bg-emerald-100 dark:bg-slate-800 font-bold'>{v||''}</button>)}</div><p>{solved?'Solved!':''}</p></div>
+import { useEffect, useState } from 'react';
+import type { GameComponentProps } from '../../types/game';
+const mk=()=>[1,2,3,4,5,6,7,8,0];
+export default function NumberPuzzle({ gameId, playerName, onGameEnd }: GameComponentProps){
+  const [t,setT]=useState<number[]>(mk().sort(()=>Math.random()-0.5)); const [moves,setMoves]=useState(0); const [sec,setSec]=useState(0);
+  useEffect(()=>{const x=setInterval(()=>setSec(v=>v+1),1000); return()=>clearInterval(x)},[]);
+  const move=(i:number)=>{const e=t.indexOf(0); const ok=[[i-1,i+1,i-3,i+3].includes(e)]; if(!ok[0]) return; const n=[...t]; [n[i],n[e]]=[n[e],n[i]]; setT(n); setMoves(v=>v+1)};
+  const done=t.every((v,i)=>v===mk()[i]); if(done) onGameEnd({score:Math.max(1,800-(moves*5+sec)),summary:`${playerName} finished ${gameId}`});
+  return <div><p>Time {sec}s · Moves {moves}</p><div className='grid grid-cols-3 gap-2 mt-2 max-w-xs'>{t.map((n,i)=><button key={i} className='tile h-16' onClick={()=>move(i)}>{n||''}</button>)}</div><button className='btn mt-3' onClick={()=>{setT(mk().sort(()=>Math.random()-0.5));setMoves(0);setSec(0)}}>Shuffle</button></div>
 }
