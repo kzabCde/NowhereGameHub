@@ -36,13 +36,16 @@ export default function MemoryCard({ onGameEnd }: GameComponentProps) {
   };
 
   return (
-    <div className='space-y-3'>
-      <p className='text-sm text-slate-300'>Moves: {moves}</p>
+    <div className='space-y-4 rounded-2xl border border-slate-700 bg-slate-950/50 p-5'>
+      <div className='flex items-center justify-between rounded-xl bg-slate-900/80 p-3'>
+        <p className='text-sm text-slate-300'>Memory Match</p>
+        <p className='text-sm font-semibold text-fuchsia-300'>Moves: {moves}</p>
+      </div>
       <div className='grid grid-cols-4 gap-2 sm:grid-cols-6'>
         {deck.map((value, index) => {
           const open = flipped.includes(index) || matched.includes(index);
           return (
-            <button key={index} onClick={() => flipCard(index)} className='aspect-square rounded-lg bg-slate-800 text-lg'>
+            <button key={index} onClick={() => flipCard(index)} className='aspect-square rounded-xl border border-slate-700 bg-slate-800 text-lg transition hover:border-fuchsia-400 hover:bg-slate-700'>
               {open ? value : '❓'}
             </button>
           );

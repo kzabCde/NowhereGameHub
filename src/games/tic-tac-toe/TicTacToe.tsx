@@ -56,16 +56,19 @@ export default function TicTacToe({ onGameEnd, playerName }: GameComponentProps)
   };
 
   return (
-    <div className='space-y-4'>
-      <p className='text-sm text-slate-300'>You are X. Turn: {isXTurn ? 'X' : 'O (CPU style)'}</p>
+    <div className='space-y-5 rounded-2xl border border-slate-700 bg-slate-950/50 p-5'>
+      <div className='flex items-center justify-between rounded-xl bg-slate-900/80 p-3'>
+        <p className='text-sm text-slate-300'>You are X</p>
+        <p className='text-sm font-semibold text-cyan-300'>Turn: {isXTurn ? 'X' : 'O'}</p>
+      </div>
       <div className='grid max-w-xs grid-cols-3 gap-2'>
         {board.map((cell, index) => (
-          <button key={index} className='aspect-square rounded-lg bg-slate-800 text-2xl font-bold' onClick={() => play(index)}>
+          <button key={index} className='aspect-square rounded-xl border border-slate-700 bg-slate-800 text-2xl font-bold transition hover:border-cyan-400 hover:bg-slate-700' onClick={() => play(index)}>
             {cell}
           </button>
         ))}
       </div>
-      {(winner || isDraw) && <button onClick={reset} className='rounded-lg bg-indigo-600 px-4 py-2'>Play again</button>}
+      {(winner || isDraw) && <button onClick={reset} className='rounded-xl bg-indigo-600 px-4 py-2 font-semibold hover:bg-indigo-500'>Play again</button>}
     </div>
   );
 }

@@ -20,12 +20,12 @@ export default function GamePage() {
 
   return (
     <main className='mx-auto max-w-4xl p-4 md:p-8 space-y-4'>
-      <Link href='/' className='inline-flex items-center gap-2 rounded-lg bg-slate-800 px-3 py-2'>
+      <Link href='/' className='inline-flex items-center gap-2 rounded-lg bg-slate-800 px-3 py-2 font-medium transition hover:bg-slate-700'>
         <ArrowLeft size={16} />
         Back to games
       </Link>
 
-      <section className='rounded-2xl border border-slate-700 bg-slate-900 p-4'>
+      <section className='rounded-2xl border border-slate-700 bg-slate-900 p-4 shadow-xl shadow-slate-950/30'>
         <h1 className='mb-2 text-2xl font-semibold'>{activeGame.name}</h1>
         <p className='mb-4 text-slate-400'>{activeGame.description}</p>
         <activeGame.component gameId={activeGame.id} playerName={playerName} onGameEnd={(result) => addScore({ gameId: activeGame.id, playerName, ...result })} />

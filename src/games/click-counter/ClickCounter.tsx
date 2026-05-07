@@ -39,13 +39,15 @@ export default function ClickCounter({ onGameEnd }: GameComponentProps) {
   };
 
   return (
-    <div className='space-y-4'>
-      <p>Time left: {timeLeft}s</p>
-      <p className='text-3xl font-bold'>{count}</p>
-      <button className='rounded bg-cyan-500 px-5 py-3 font-semibold text-slate-950' onClick={click} disabled={timeLeft === 0}>
+    <div className='space-y-4 rounded-2xl border border-slate-700 bg-slate-950/50 p-5'>
+      <div className='grid grid-cols-2 gap-3'>
+        <div className='rounded-xl bg-slate-900/80 p-3 text-sm'>Time left: <span className='font-semibold text-cyan-300'>{timeLeft}s</span></div>
+        <div className='rounded-xl bg-slate-900/80 p-3 text-sm'>Clicks: <span className='font-semibold text-cyan-300'>{count}</span></div>
+      </div>
+      <button className='rounded-xl bg-cyan-500 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-50' onClick={click} disabled={timeLeft === 0}>
         Click Fast!
       </button>
-      {timeLeft === 0 && <button onClick={reset} className='block rounded bg-indigo-600 px-4 py-2'>Play again</button>}
+      {timeLeft === 0 && <button onClick={reset} className='block rounded-xl bg-indigo-600 px-4 py-2 font-semibold hover:bg-indigo-500'>Play again</button>}
     </div>
   );
 }

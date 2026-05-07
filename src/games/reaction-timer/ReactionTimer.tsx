@@ -38,13 +38,13 @@ export default function ReactionTimer({ onGameEnd }: GameComponentProps) {
   };
 
   return (
-    <div className='space-y-4'>
-      <p>{phase === 'ready' ? 'Tap now!' : phase === 'early' ? 'Too early! Try again.' : 'Wait for green...'}</p>
-      <button onClick={handleTap} className={`rounded px-5 py-3 ${phase === 'ready' ? 'bg-green-500' : 'bg-slate-700'}`}>
+    <div className='space-y-4 rounded-2xl border border-slate-700 bg-slate-950/50 p-5'>
+      <p className='rounded-xl bg-slate-900/80 p-3 text-sm'>{phase === 'ready' ? 'Tap now!' : phase === 'early' ? 'Too early! Try again.' : 'Wait for green...'}</p>
+      <button onClick={handleTap} className={`rounded-xl px-5 py-3 font-semibold transition ${phase === 'ready' ? 'bg-green-500 text-slate-950 hover:bg-green-400' : 'bg-slate-700 hover:bg-slate-600'}`}>
         React
       </button>
       {(phase === 'finished' || phase === 'early') && (
-        <button onClick={reset} className='rounded bg-indigo-600 px-4 py-2'>
+        <button onClick={reset} className='rounded-xl bg-indigo-600 px-4 py-2 font-semibold hover:bg-indigo-500'>
           Retry
         </button>
       )}
