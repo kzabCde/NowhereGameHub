@@ -1,14 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useAppStore } from '../../store/useAppStore';
-
-const makeGrid=(n:number)=>[...Array(n*n).keys()].map(i=>i+1).map(v=>v===n*n?0:v);
-export function NumberPuzzle(){
-  const [n,setN]=useState(3); const [tiles,setTiles]=useState<number[]>(makeGrid(3)); const [moves,setMoves]=useState(0); const [secs,setSecs]=useState(0);
-  const addLeaderboard=useAppStore(s=>s.addLeaderboard);
-  useEffect(()=>{const t=setInterval(()=>setSecs(s=>s+1),1000); return()=>clearInterval(t);},[]);
-  const solved = useMemo(()=>tiles.every((v,i)=>v===makeGrid(n)[i]),[tiles,n]);
-  useEffect(()=>{ if(solved&&moves>0) addLeaderboard({game:'number-puzzle',playerName:'Local',scoreLabel:`${secs}s/${moves} moves`,meta:{size:n}});},[solved,moves,secs,n,addLeaderboard]);
-  const shuffle=()=>setTiles([...tiles].sort(()=>Math.random()-0.5));
-  const move=(idx:number)=>{ const e=tiles.indexOf(0); const r=Math.floor(idx/n), c=idx%n, er=Math.floor(e/n), ec=e%n; if(Math.abs(r-er)+Math.abs(c-ec)!==1) return; const t=[...tiles]; [t[idx],t[e]]=[t[e],t[idx]]; setTiles(t); setMoves(m=>m+1);};
-  return <div><div className='flex gap-2 mb-2'><button className='btn' onClick={()=>{setN(3);setTiles(makeGrid(3));}}>3x3</button><button className='btn' onClick={()=>{setN(4);setTiles(makeGrid(4));}}>4x4</button><button className='btn' onClick={shuffle}>Shuffle</button></div><p>Time {secs}s | Moves {moves}</p><div className='grid gap-2' style={{gridTemplateColumns:`repeat(${n}, minmax(0,1fr))`, maxWidth: n===3?260:340}}>{tiles.map((v,i)=><button key={i} onClick={()=>move(i)} className='h-16 rounded-xl bg-emerald-100 dark:bg-slate-800 font-bold'>{v||''}</button>)}</div><p>{solved?'Solved!':''}</p></div>
+'use client';
+import { useState } from 'react';
+import { GameComponentProps } from '@/types/game';
+const target = 15;
+export default function NumberPuzzle({ onGameEnd }: GameComponentProps){
+ const [nums,setNums]=useState<number[]>([]);
+ const pick=(n:number)=>{ if(nums.includes(n)||nums.length>=3) return; const next=[...nums,n]; setNums(next); if(next.length===3){ const sum=next.reduce((a,b)=>a+b,0); onGameEnd({score:sum===target?100:Math.max(0,70-Math.abs(target-sum)*10),won:sum===target,details:`Sum ${sum}`}); }};
+ return <div className='space-y-3'><p>Pick 3 numbers to make {target}</p><div className='grid grid-cols-5 gap-2'>{Array.from({length:9},(_,i)=>i+1).map(n=><button key={n} onClick={()=>pick(n)} className='rounded bg-slate-800 p-3'>{n}</button>)}</div><p>Selected: {nums.join(', ')}</p></div>
 }

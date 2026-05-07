@@ -1,20 +1,11 @@
+'use client';
 import { useState } from 'react';
-import { useAppStore } from '../../store/useAppStore';
-
-type Cell = 'X' | 'O' | null;
-const lines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-
-export function TicTacToe() {
-  const [board, setBoard] = useState<Cell[]>(Array(9).fill(null));
-  const [turn, setTurn] = useState<'X'|'O'>('X');
-  const [bot, setBot] = useState(false);
-  const addLeaderboard = useAppStore((s)=>s.addLeaderboard); const addHistory = useAppStore((s)=>s.addHistory);
-  const winner = lines.find(([a,b,c])=> board[a] && board[a]===board[b] && board[a]===board[c])?.map(i=>board[i])[0] as Cell;
-  const draw = !winner && board.every(Boolean);
-  const play = (i:number)=>{ if(board[i]||winner) return; const next=[...board]; next[i]=turn; setBoard(next); const nextTurn=turn==='X'?'O':'X'; setTurn(nextTurn);
-    if(bot && nextTurn==='O'){ const empty=next.map((v,idx)=>v? -1:idx).filter(v=>v>=0); if(empty.length){ setTimeout(()=>play(empty[Math.floor(Math.random()*empty.length)]),250);} }
-  };
-  const done = winner || draw;
-  if(done){ const result = winner?`${winner} wins`:'Draw'; addHistory({game:'tic-tac-toe', result}); addLeaderboard({game:'tic-tac-toe', playerName:winner||'Both', scoreLabel:result}); }
-  return <div className='space-y-3'><div className='flex gap-2'><button className='btn' onClick={()=>setBot(!bot)}>Mode: {bot?'Vs Bot':'PvP'}</button><button className='btn' onClick={()=>{setBoard(Array(9).fill(null));setTurn('X')}}>Reset</button></div><p>Turn: {turn}</p><div className='grid grid-cols-3 gap-2 max-w-xs'>{board.map((c,i)=><button key={i} onClick={()=>play(i)} className='h-20 rounded-xl bg-indigo-100 dark:bg-slate-800 text-2xl font-bold'>{c}</button>)}</div><p>{winner?`${winner} wins!`:draw?'Draw':''}</p></div>;
+import { GameComponentProps } from '@/types/game';
+const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+export default function TicTacToe({ onGameEnd }: GameComponentProps) {
+  const [b,setB]=useState<(null|'X'|'O')[]>(Array(9).fill(null));
+  const [x,setX]=useState(true);
+  const w = wins.find(([a,b1,c])=>b[a]&&b[a]===b[b1]&&b[a]===b[c]);
+  const ended = !!w || b.every(Boolean);
+  return <div className='space-y-4'><div className='grid grid-cols-3 gap-2 max-w-xs'>{b.map((v,i)=><button key={i} className='aspect-square rounded bg-slate-800 text-2xl' onClick={()=>{if(v||ended)return; const n=[...b]; n[i]=x?'X':'O'; setB(n); setX(!x); const nw=wins.find(([a,b1,c])=>n[a]&&n[a]===n[b1]&&n[a]===n[c]); if(nw) onGameEnd({score:nw?100:0,won:true,details:`Winner ${n[nw[0]]}`}); else if(n.every(Boolean)) onGameEnd({score:50,details:'Draw'});}}>{v}</button>)}</div></div>
 }
