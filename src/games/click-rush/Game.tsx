@@ -1,0 +1,1 @@
+'use client'; import Legacy from '../click-counter/ClickCounter'; import { GameComponentProps } from '@/types/game'; export default function Game({ runtime, manifest }: GameComponentProps){ return <Legacy gameId={manifest.id} playerName={runtime.playerName} onGameEnd={(r)=>runtime.endSession(r)} />; }

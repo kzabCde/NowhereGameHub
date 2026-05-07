@@ -1,0 +1,2 @@
+import { GameManifest } from '@/types/game';
+export const manifest: GameManifest = { id:'memory-card', title:'Memory Card', shortTitle:'Memory', description:'Match all pairs fast.', category:'memory', difficulty:'medium', version:'1.0.0', author:'Nowhere Arcade', icon:'🧠', tags:['cards'], minPlayers:1, maxPlayers:1, supportsBot:false, supportsSaveState:true, achievements:[{id:'speed-runner',title:'Speed Runner',description:'Finish under 30s'}] };

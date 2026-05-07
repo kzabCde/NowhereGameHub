@@ -1,0 +1,3 @@
+'use client';
+import { useEffect, useState } from 'react'; import { db, AchievementUnlock } from '@/lib/db';
+export default function Page(){ const [rows,setRows]=useState<AchievementUnlock[]>([]); useEffect(()=>{db.achievements.toArray().then(setRows);},[]); return <main className='p-6 max-w-4xl mx-auto'><h1 className='text-2xl font-semibold'>Achievements</h1>{rows.length===0?<p className='text-slate-400 mt-3'>No achievements unlocked yet.</p>:<div className='space-y-2 mt-4'>{rows.map(a=><div key={a.id} className='p-3 rounded bg-slate-900 border border-slate-700'>{a.gameId} · {a.achievementId}</div>)}</div>}</main>; }

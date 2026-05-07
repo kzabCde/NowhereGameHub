@@ -1,0 +1,2 @@
+import { GameManifest } from '@/types/game';
+export const manifest: GameManifest = { id:'tic-tac-toe', title:'Tic Tac Toe', shortTitle:'TTT', description:'Classic strategy duel.', category:'strategy', difficulty:'easy', version:'1.0.0', author:'Nowhere Arcade', icon:'❌', tags:['classic'], minPlayers:1, maxPlayers:2, supportsBot:true, supportsSaveState:false, achievements:[{id:'first-win',title:'First Win',description:'Win a match'}] };

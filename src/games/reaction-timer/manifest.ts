@@ -1,0 +1,2 @@
+import { GameManifest } from '@/types/game';
+export const manifest: GameManifest = { id:'reaction-timer', title:'Reaction Timer', shortTitle:'React', description:'Measure reflex speed.', category:'reflex', difficulty:'easy', version:'1.0.0', author:'Nowhere Arcade', icon:'⚡', tags:['speed'], minPlayers:1, maxPlayers:1, supportsBot:false, supportsSaveState:false, achievements:[{id:'lightning',title:'Lightning',description:'Sub 200ms'}] };

@@ -1,0 +1,2 @@
+import { GameManifest } from '@/types/game';
+export const manifest: GameManifest = { id:'click-rush', title:'Click Rush', shortTitle:'Rush', description:'Click as fast as possible.', category:'arcade', difficulty:'easy', version:'1.0.0', author:'Nowhere Arcade', icon:'🖱️', tags:['speed'], minPlayers:1, maxPlayers:1, supportsBot:false, supportsSaveState:false, achievements:[{id:'century',title:'Century',description:'Score 100+'}] };

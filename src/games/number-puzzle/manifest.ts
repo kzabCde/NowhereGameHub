@@ -1,0 +1,2 @@
+import { GameManifest } from '@/types/game';
+export const manifest: GameManifest = { id:'number-puzzle', title:'Number Puzzle', shortTitle:'Numbers', description:'Solve target sums.', category:'puzzle', difficulty:'medium', version:'1.0.0', author:'Nowhere Arcade', icon:'🔢', tags:['math'], minPlayers:1, maxPlayers:1, supportsBot:false, supportsSaveState:true, achievements:[{id:'solver',title:'Solver',description:'Finish 10 rounds'}] };

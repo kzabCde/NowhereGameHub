@@ -1,32 +1,45 @@
 import { ComponentType } from 'react';
 
-export type GameResult = {
-  score: number;
-  details?: string;
-  won?: boolean;
-};
+export type GameCategory = 'strategy' | 'puzzle' | 'arcade' | 'reflex' | 'memory';
+export type GameDifficulty = 'easy' | 'medium' | 'hard';
 
-export type GameComponentProps = {
-  gameId: string;
-  playerName: string;
-  onGameEnd: (result: GameResult) => void;
-};
+export type GameAchievement = { id: string; title: string; description: string };
 
-export type GameDefinition = {
+export type GameManifest = {
   id: string;
-  name: string;
+  title: string;
+  shortTitle: string;
   description: string;
+  category: GameCategory;
+  difficulty: GameDifficulty;
+  version: string;
+  author: string;
   icon: string;
-  color: string;
-  component: ComponentType<GameComponentProps>;
+  tags: string[];
+  minPlayers: number;
+  maxPlayers: number;
+  supportsBot: boolean;
+  supportsSaveState: boolean;
+  achievements: GameAchievement[];
 };
 
-export type ScoreEntry = {
-  id: string;
-  gameId: string;
+export type SessionResult = { score: number; won?: boolean; details?: string; durationMs?: number };
+
+export type GameRuntime = {
+  playerId: string;
   playerName: string;
-  score: number;
-  details?: string;
-  won?: boolean;
-  playedAt: string;
+  startSession: () => Promise<string>;
+  pauseSession: () => Promise<void>;
+  resumeSession: () => Promise<void>;
+  endSession: (result: SessionResult) => Promise<void>;
+  saveState: (state: unknown) => Promise<void>;
+  loadState: () => Promise<unknown | null>;
+  unlockAchievement: (achievementId: string) => Promise<void>;
+};
+
+export type GameComponentProps = { runtime: GameRuntime; manifest: GameManifest };
+
+export type GameModule = {
+  manifest: GameManifest;
+  component: ComponentType<GameComponentProps>;
 };

@@ -1,14 +1,3 @@
 import './globals.css';
-
-export const metadata = {
-  title: 'Nowhere Game Hub',
-  description: 'Local-first browser game hub',
-};
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
-}
+export const metadata = { title: 'Nowhere Arcade OS', description: 'Local-first arcade platform' };
+export default function RootLayout({ children }: { children: React.ReactNode }) { return <html lang='en'><body className='bg-slate-950 text-slate-100'>{children}</body></html>; }
