@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowLeft, Trophy, User } from 'lucide-react';
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Trophy, User } from 'lucide-react';
 import GameCard from '@/components/GameCard';
 import Leaderboard from '@/components/Leaderboard';
 import SettingsPanel from '@/components/SettingsPanel';
@@ -10,9 +10,8 @@ import { gameRegistry } from '@/games/registry';
 import { useGameStore } from '@/store/useGameStore';
 
 export default function Page() {
-  const { playerName, activeGameId, scores, hydrated, setPlayerName, setActiveGameId, addScore, hydrate } = useGameStore();
+  const { playerName, scores, hydrated, setPlayerName, hydrate } = useGameStore();
   useEffect(() => hydrate(), [hydrate]);
-  const activeGame = useMemo(() => gameRegistry.find((g) => g.id === activeGameId), [activeGameId]);
 
   if (!hydrated) return <div className='p-8 text-slate-400'>Loading local hub...</div>;
 
@@ -30,21 +29,9 @@ export default function Page() {
             <input value={playerName} onChange={(e) => setPlayerName(e.target.value)} className='w-full bg-transparent outline-none' placeholder='Player name' />
           </div>
 
-          <AnimatePresence mode='wait'>
-            {activeGame ? (
-              <motion.div key={activeGame.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className='rounded-2xl border border-slate-700 bg-slate-900 p-4'>
-                <div className='mb-4 flex items-center justify-between'>
-                  <h2 className='text-xl font-semibold'>{activeGame.name}</h2>
-                  <button className='rounded-lg bg-slate-800 px-3 py-2 inline-flex items-center gap-2' onClick={() => setActiveGameId(null)}><ArrowLeft size={16}/>Back</button>
-                </div>
-                <activeGame.component gameId={activeGame.id} playerName={playerName} onGameEnd={(result) => addScore({ gameId: activeGame.id, playerName, ...result })} />
-              </motion.div>
-            ) : (
-              <motion.div key='grid' initial={{ opacity: 0 }} animate={{ opacity: 1 }} className='grid gap-3 sm:grid-cols-2'>
-                {gameRegistry.map((game) => <GameCard key={game.id} game={game} onPlay={setActiveGameId} />)}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <motion.div key='grid' initial={{ opacity: 0 }} animate={{ opacity: 1 }} className='grid gap-3 sm:grid-cols-2'>
+            {gameRegistry.map((game) => <GameCard key={game.id} game={game} />)}
+          </motion.div>
         </section>
 
         <aside className='space-y-4'>

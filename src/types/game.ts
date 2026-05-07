@@ -17,6 +17,7 @@ export type GameDefinition = {
   name: string;
   description: string;
   icon: string;
+  coverImage: string;
   color: string;
   component: ComponentType<GameComponentProps>;
 };
