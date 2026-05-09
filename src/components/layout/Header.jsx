@@ -1,0 +1,2 @@
+'use client';
+export default function Header({theme,toggleTheme,sound,toggleSound}){return <header className='flex flex-wrap gap-3 items-center justify-between mb-6'><h1 className='text-3xl font-bold'>Local Game Hub</h1><div className='flex gap-2'><button onClick={toggleTheme} className='px-3 py-2 rounded-lg border'>{theme==='dark'?'🌙 Dark':'☀️ Light'}</button><button onClick={toggleSound} className='px-3 py-2 rounded-lg border'>{sound?'🔊 Sound':'🔇 Mute'}</button></div></header>}

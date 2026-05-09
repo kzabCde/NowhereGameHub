@@ -1,0 +1,1 @@
+export default function HeroSection(){return <section className='rounded-2xl p-6 bg-gradient-to-r from-indigo-600 to-cyan-600 text-white mb-6'><h2 className='text-2xl font-bold'>Play local-first mini games</h2><p>Startup-style UI, instant loading, no accounts needed.</p></section>}

@@ -1,0 +1,3 @@
+'use client';
+import Link from 'next/link';
+export default function GameDetailModal({game,onClose}){if(!game) return null; return <div className='fixed inset-0 bg-black/50 grid place-items-center p-4'><div className='bg-white dark:bg-slate-900 text-black dark:text-white rounded-xl p-6 max-w-md w-full'><h3 className='text-xl font-bold'>{game.title}</h3><p className='my-3'>{game.description}</p><div className='flex gap-2'>{!game.comingSoon && <Link href={game.route} className='px-3 py-2 rounded bg-indigo-600 text-white'>Play</Link>}<button onClick={onClose} className='px-3 py-2 rounded border'>Close</button></div></div></div>}

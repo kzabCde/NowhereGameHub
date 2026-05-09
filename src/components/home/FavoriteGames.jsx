@@ -1,0 +1,1 @@
+export default function FavoriteGames({favorites}){return <section><h3 className='font-semibold mb-2'>Favorite Games</h3>{favorites.length?<ul className='list-disc pl-5'>{favorites.map(g=><li key={g.id}>{g.title}</li>)}</ul>:<p className='opacity-70'>No favorites yet.</p>}</section>}
