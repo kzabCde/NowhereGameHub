@@ -1,0 +1,1 @@
+export default function DifficultySelector({value,onChange}){return <select className='bg-white/10 px-3 py-2 rounded-xl' value={value} onChange={(e)=>onChange(e.target.value)}>{['easy','normal','hard','expert'].map(d=><option key={d} value={d}>{d}</option>)}</select>}

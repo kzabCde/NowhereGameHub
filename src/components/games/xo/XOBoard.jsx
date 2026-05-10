@@ -1,0 +1,1 @@
+export default function XOBoard({board,onClick,winning,locked}){return <div className='grid grid-cols-3 gap-2'>{board.map((v,i)=><button key={i} disabled={locked||v} onClick={()=>onClick(i)} className={`h-20 text-4xl rounded-2xl glass ${winning.includes(i)?'ring-2 ring-emerald-400':''}`}>{v}</button>)}</div>}

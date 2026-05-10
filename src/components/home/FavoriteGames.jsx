@@ -1,0 +1,1 @@
+import EmptyState from './EmptyState'; export default function FavoriteGames({games}){return <section className='glass p-4'><h3>เกมโปรด</h3>{games.length?<div className='flex gap-2 mt-2 flex-wrap'>{games.map(g=><span key={g.id} className='glass px-2 py-1'>{g.icon} {g.title}</span>)}</div>:<EmptyState text='ยังไม่มีเกมโปรด'/>}</section>}

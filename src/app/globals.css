@@ -1,7 +1,2 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-  @apply bg-slate-950 text-slate-100 min-h-screen;
-}
+@tailwind base;@tailwind components;@tailwind utilities;
+body{@apply min-h-screen bg-slate-950 text-white;} .glass{@apply bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl;}
