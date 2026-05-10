@@ -15,6 +15,7 @@ Play small games anywhere, even nowhere.
 - Connect Four
 - XO Battle
 - Memory Card
+- Snake
 - Responsive UI
 - Local-first persistence
 - Vercel-ready deployment
@@ -62,7 +63,6 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - memoryCardBestTime
 
 ## Future Improvements
-- Add Snake
 - Add Pong
 - Add achievements
 - Add local leaderboard
