@@ -139,11 +139,17 @@ export default function SnakeGame() {
 
     <div className='glass p-3 sm:p-4 max-w-[260px] mx-auto'>
       <p className='text-xs text-slate-300 mb-2 text-center'>ใช้ปุ่มลูกศรหรือคีย์บอร์ด</p>
-      <div className='grid grid-cols-3 gap-2'>
-        <button className={`${dpadBtn} col-start-2`} onClick={() => turn('ArrowUp')} aria-label='Move up'>↑</button>
-        <button className={dpadBtn} onClick={() => turn('ArrowLeft')} aria-label='Move left'>←</button>
-        <button className={dpadBtn} onClick={() => turn('ArrowDown')} aria-label='Move down'>↓</button>
-        <button className={dpadBtn} onClick={() => turn('ArrowRight')} aria-label='Move right'>→</button>
+      <div className='space-y-2'>
+        <div className='grid grid-cols-3 gap-2'>
+          <div />
+          <button className={dpadBtn} onClick={() => turn('ArrowUp')} aria-label='Move up'>↑</button>
+          <div />
+        </div>
+        <div className='grid grid-cols-3 gap-2'>
+          <button className={dpadBtn} onClick={() => turn('ArrowLeft')} aria-label='Move left'>←</button>
+          <button className={dpadBtn} onClick={() => turn('ArrowDown')} aria-label='Move down'>↓</button>
+          <button className={dpadBtn} onClick={() => turn('ArrowRight')} aria-label='Move right'>→</button>
+        </div>
       </div>
     </div>
 
