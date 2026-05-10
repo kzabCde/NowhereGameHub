@@ -10,6 +10,10 @@ const DIR = {
   ArrowDown: { x: 0, y: 1 },
   ArrowLeft: { x: -1, y: 0 },
   ArrowRight: { x: 1, y: 0 },
+  w: { x: 0, y: -1 },
+  s: { x: 0, y: 1 },
+  a: { x: -1, y: 0 },
+  d: { x: 1, y: 0 },
 };
 
 function randomFood(snake) {
@@ -61,7 +65,7 @@ export default function SnakeGame() {
   };
 
   useEffect(() => {
-    const onKey = (e) => turn(e.key);
+    const onKey = (e) => turn(e.key.length === 1 ? e.key.toLowerCase() : e.key);
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [running, gameOver]);
@@ -138,7 +142,7 @@ export default function SnakeGame() {
     </div>
 
     <div className='glass p-3 sm:p-4 max-w-[260px] mx-auto'>
-      <p className='text-xs text-slate-300 mb-2 text-center'>ใช้ปุ่มลูกศรหรือคีย์บอร์ด</p>
+      <p className='text-xs text-slate-300 mb-2 text-center'>ใช้ปุ่มลูกศร, WASD หรือปุ่มบนจอ</p>
       <div className='space-y-2'>
         <div className='grid grid-cols-3 gap-2'>
           <div />
