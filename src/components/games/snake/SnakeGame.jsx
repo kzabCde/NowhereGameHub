@@ -42,6 +42,15 @@ export default function SnakeGame() {
     setSpeed(140);
   };
 
+  const toggleRunning = () => {
+    if (gameOver) {
+      reset();
+      setRunning(true);
+      return;
+    }
+    setRunning((v) => !v);
+  };
+
   const turn = (key) => {
     const next = DIR[key];
     if (!next) return;
@@ -55,7 +64,7 @@ export default function SnakeGame() {
     const onKey = (e) => turn(e.key);
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  });
+  }, [running, gameOver]);
 
   useEffect(() => {
     if (!running || gameOver) return;
@@ -105,37 +114,42 @@ export default function SnakeGame() {
     return map;
   }, [snake, food]);
 
-  return <div className='space-y-3'>
-    <div className='glass p-3 flex flex-wrap gap-2 items-center text-sm'>
-      <div>Score: <b>{score}</b></div>
-      <div>Best: <b>{best}</b></div>
-      <div>Speed: <b>{Math.round((160 - speed) / 4) + 1}</b></div>
-      <button className='glass px-3 py-1' onClick={() => setRunning((v) => !v)}>{running ? 'Pause' : gameOver ? 'Start New' : 'Start'}</button>
-      <button className='glass px-3 py-1' onClick={reset}>Reset</button>
+  const dpadBtn = 'glass min-h-12 rounded-xl text-xl active:scale-95 transition';
+
+  return <div className='space-y-4'>
+    <div className='glass p-3 sm:p-4 grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm'>
+      <div className='glass px-3 py-2'>Score <b>{score}</b></div>
+      <div className='glass px-3 py-2'>Best <b>{best}</b></div>
+      <div className='glass px-3 py-2 col-span-2 sm:col-span-1'>Speed <b>{Math.round((160 - speed) / 4) + 1}</b></div>
+      <button className='glass px-3 py-2 font-semibold col-span-1 sm:col-span-1 active:scale-95 transition' onClick={toggleRunning}>{running ? 'Pause' : gameOver ? 'Start New' : 'Start'}</button>
+      <button className='glass px-3 py-2 font-semibold col-span-1 sm:col-span-1 active:scale-95 transition' onClick={reset}>Reset</button>
     </div>
 
-    <div className='glass p-3 inline-block'>
+    <div className='glass p-2 sm:p-3 w-full max-w-[min(92vw,560px)] mx-auto'>
       <div className='grid gap-[2px] bg-slate-900 p-2 rounded-xl' style={{ gridTemplateColumns: `repeat(${SIZE}, minmax(0, 1fr))` }}>
         {Array.from({ length: SIZE * SIZE }).map((_, i) => {
           const x = i % SIZE;
           const y = Math.floor(i / SIZE);
           const type = cells.get(`${x}-${y}`);
           const cls = type === 'head' ? 'bg-emerald-300' : type === 'body' ? 'bg-emerald-500' : type === 'food' ? 'bg-rose-400' : 'bg-slate-800';
-          return <div key={i} className={`w-4 h-4 sm:w-5 sm:h-5 rounded-[3px] ${cls}`} />;
+          return <div key={i} className={`aspect-square w-full rounded-[3px] ${cls}`} />;
         })}
       </div>
     </div>
 
-    <div className='grid grid-cols-3 gap-2 max-w-[220px]'>
-      <button className='glass p-2 col-start-2' onClick={() => turn('ArrowUp')}>↑</button>
-      <button className='glass p-2' onClick={() => turn('ArrowLeft')}>←</button>
-      <button className='glass p-2' onClick={() => turn('ArrowDown')}>↓</button>
-      <button className='glass p-2' onClick={() => turn('ArrowRight')}>→</button>
+    <div className='glass p-3 sm:p-4 max-w-[260px] mx-auto'>
+      <p className='text-xs text-slate-300 mb-2 text-center'>ใช้ปุ่มลูกศรหรือคีย์บอร์ด</p>
+      <div className='grid grid-cols-3 gap-2'>
+        <button className={`${dpadBtn} col-start-2`} onClick={() => turn('ArrowUp')} aria-label='Move up'>↑</button>
+        <button className={dpadBtn} onClick={() => turn('ArrowLeft')} aria-label='Move left'>←</button>
+        <button className={dpadBtn} onClick={() => turn('ArrowDown')} aria-label='Move down'>↓</button>
+        <button className={dpadBtn} onClick={() => turn('ArrowRight')} aria-label='Move right'>→</button>
+      </div>
     </div>
 
-    {gameOver && <div className='glass p-4 animate-in-pop'>
+    {gameOver && <div className='glass p-4 animate-in-pop text-center'>
       <p className='text-rose-300 font-bold text-lg'>Game Over</p>
-      <p className='text-sm text-slate-200'>คะแนนของคุณ: {score} — กด Start New หรือ Reset เพื่อเล่นอีกครั้ง</p>
+      <p className='text-sm text-slate-200'>คะแนนของคุณ: {score} — กด Start New เพื่อเริ่มทันที</p>
     </div>}
   </div>;
 }
