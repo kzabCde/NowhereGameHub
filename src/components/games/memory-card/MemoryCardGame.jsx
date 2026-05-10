@@ -1,6 +1,53 @@
-'use client'; import { useEffect, useState } from 'react'; import MemoryCardBoard from './MemoryCardBoard'; import { createDeck } from '@/lib/memory-card/cards'; import { getNumberStorage, setNumberStorage } from '@/lib/storage';
-export default function MemoryCardGame(){const [cards,setCards]=useState(createDeck()); const [fl,setFl]=useState([]); const [moves,setMoves]=useState(0); const [t,setT]=useState(0); const [lock,setLock]=useState(false);
-useEffect(()=>{const id=setInterval(()=>setT(v=>v+1),1000); return ()=>clearInterval(id);},[]);
-const reset=()=>{setCards(createDeck());setFl([]);setMoves(0);setT(0);setLock(false)};
-const flip=(i)=>{ if(lock||fl.includes(i)) return; const n=[...fl,i]; setFl(n); if(n.length===2){setMoves(v=>v+1); const [a,b]=n; if(cards[a].icon===cards[b].icon){const nc=cards.map((c,idx)=>(idx===a||idx===b?{...c,matched:true}:c)); setCards(nc); setFl([]); if(nc.every(c=>c.matched)){ const bm=getNumberStorage('memoryCardBestMoves',0); if(!bm||moves+1<bm){setNumberStorage('memoryCardBestMoves',moves+1); setNumberStorage('memoryCardBestScore',moves+1);} const bt=getNumberStorage('memoryCardBestTime',0); if(!bt||t<bt)setNumberStorage('memoryCardBestTime',t); }} else { setLock(true); setTimeout(()=>{setFl([]);setLock(false)},650);} }};
-return <div className='space-y-3'><div className='glass p-3 flex gap-3'><span>Moves: {moves}</span><span>Time: {t}s</span><span>Matched: {cards.filter(c=>c.matched).length/2}/8</span><button onClick={reset} className='glass px-2'>Reset Game</button></div><MemoryCardBoard cards={cards} flipped={fl} onFlip={flip} locked={lock}/></div>}
+'use client';
+import { useEffect, useState } from 'react';
+import MemoryCardBoard from './MemoryCardBoard';
+import { createDeck } from '@/lib/memory-card/cards';
+import { getNumberStorage, setNumberStorage } from '@/lib/storage';
+
+export default function MemoryCardGame() {
+  const [cards, setCards] = useState(createDeck());
+  const [flipped, setFlipped] = useState([]);
+  const [moves, setMoves] = useState(0);
+  const [time, setTime] = useState(0);
+  const [locked, setLocked] = useState(false);
+  const [result, setResult] = useState(null);
+
+  useEffect(() => {
+    if (result) return undefined;
+    const id = setInterval(() => setTime((v) => v + 1), 1000);
+    return () => clearInterval(id);
+  }, [result]);
+
+  const reset = () => { setCards(createDeck()); setFlipped([]); setMoves(0); setTime(0); setLocked(false); setResult(null); };
+
+  const onFinished = (nextCards, latestMoves) => {
+    const bestMoves = getNumberStorage('memoryCardBestMoves', 0);
+    if (!bestMoves || latestMoves < bestMoves) { setNumberStorage('memoryCardBestMoves', latestMoves); setNumberStorage('memoryCardBestScore', latestMoves); }
+    const bestTime = getNumberStorage('memoryCardBestTime', 0);
+    if (!bestTime || time < bestTime) setNumberStorage('memoryCardBestTime', time);
+    setLocked(true);
+    setResult({ title: 'Stage Clear', detail: `จับคู่ครบทั้งหมดใน ${latestMoves} moves และ ${time} วินาที`, tone: 'text-cyan-300' });
+  };
+
+  const flip = (i) => {
+    if (locked || flipped.includes(i)) return;
+    const next = [...flipped, i];
+    setFlipped(next);
+    if (next.length === 2) {
+      const latestMoves = moves + 1;
+      setMoves(latestMoves);
+      const [a, b] = next;
+      if (cards[a].icon === cards[b].icon) {
+        const nextCards = cards.map((c, idx) => (idx === a || idx === b ? { ...c, matched: true } : c));
+        setCards(nextCards);
+        setFlipped([]);
+        if (nextCards.every((c) => c.matched)) onFinished(nextCards, latestMoves);
+      } else {
+        setLocked(true);
+        setTimeout(() => { setFlipped([]); setLocked(false); }, 550);
+      }
+    }
+  };
+
+  return <div className='space-y-3'><div className='glass p-3 flex gap-3'><span>Moves: {moves}</span><span>Time: {time}s</span><span>Matched: {cards.filter((c) => c.matched).length / 2}/8</span><button onClick={reset} className='glass px-2'>Reset Game</button></div><MemoryCardBoard cards={cards} flipped={flipped} onFlip={flip} locked={locked} />{result && <div className='glass p-4 animate-in-pop'><p className={`text-lg font-bold ${result.tone}`}>{result.title}</p><p className='text-sm text-slate-200'>{result.detail}</p></div>}</div>;
+}
