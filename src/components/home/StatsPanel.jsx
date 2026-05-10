@@ -1,0 +1,1 @@
+export default function StatsPanel({total,available,favorites,recent}){return <section className='grid grid-cols-2 md:grid-cols-4 gap-3'>{[['ทั้งหมด',total],['พร้อมเล่น',available],['รายการโปรด',favorites],['ล่าสุด',recent]].map(([l,v])=><div key={l} className='glass p-4'><p className='text-slate-300 text-sm'>{l}</p><p className='text-2xl font-bold'>{v}</p></div>)}</section>}
