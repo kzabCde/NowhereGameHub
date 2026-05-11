@@ -53,6 +53,8 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - xoBestScore
 - memoryCardBestScore
 - snakeBestScore
+- reactionRushBestScore
+- numberNinjaBestScore
 - connectFourPlayerWins
 - connectFourMachineWins
 - connectFourDraws
