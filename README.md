@@ -16,7 +16,11 @@ Play small games anywhere, even nowhere.
 - XO Battle
 - Memory Card
 - Snake
+- Reaction Rush
+- Number Ninja
 - Responsive UI
+- Reflex timing game
+- Fast mental math game
 - Local-first persistence
 - Vercel-ready deployment
 
@@ -53,6 +57,8 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - xoBestScore
 - memoryCardBestScore
 - snakeBestScore
+- reactionRushBestScore
+- numberNinjaBestScore
 - connectFourPlayerWins
 - connectFourMachineWins
 - connectFourDraws
@@ -70,3 +76,12 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - Add offline support
 - Add local multiplayer mode
 - Add more AI difficulty tuning
+
+
+## Playable Routes
+- /games/connect-four
+- /games/xo
+- /games/memory-card
+- /games/snake
+- /games/reaction-rush
+- /games/number-ninja
