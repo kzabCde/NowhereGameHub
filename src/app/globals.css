@@ -5,7 +5,21 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
+  font-family: var(--font-noto-thai), system-ui, sans-serif;
   @apply min-h-screen bg-zinc-50 text-zinc-950 antialiased;
+}
+
+.font-brand {
+  font-family: var(--font-space-grotesk), var(--font-noto-thai), system-ui, sans-serif;
+}
+
+.font-hud {
+  font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: .08em;
+}
+
+.font-thai {
+  font-family: var(--font-noto-thai), system-ui, sans-serif;
 }
 .dark body { @apply bg-[#030303] text-zinc-100; }
 

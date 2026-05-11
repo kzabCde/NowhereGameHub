@@ -89,10 +89,10 @@ export default function XOGame() {
       </select>
       <button className='metal-card px-2' onClick={reset}>Reset Game</button>
     </div>
-    <p className='font-semibold'>{status}</p>
+    <p className='font-brand font-semibold'>{status}</p>
     <XOBoard board={board} onClick={move} winning={winning} locked={locked} />
     <div className='grid grid-cols-3 gap-2 text-sm'>
-      <div className='metal-card p-2'>Player {scores.p}</div><div className='metal-card p-2'>Machine {scores.m}</div><div className='metal-card p-2'>Draw {scores.d}</div>
+      <div className='font-hud metal-card p-2'>Player {scores.p}</div><div className='font-hud metal-card p-2'>Machine {scores.m}</div><div className='font-hud metal-card p-2'>Draw {scores.d}</div>
     </div>
     {result && <div className='metal-card p-4 animate-in-pop'>
       <p className={`text-lg font-bold ${result.tone}`}>{result.title}</p>
