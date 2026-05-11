@@ -50,6 +50,11 @@ export default function NumberNinjaGame() {
 
   const inputRef = useRef(null);
   const intervalRef = useRef(null);
+  const scoreRef = useRef(0);
+
+  useEffect(() => {
+    scoreRef.current = score;
+  }, [score]);
 
   const clearTimer = () => {
     if (intervalRef.current) {
@@ -114,14 +119,14 @@ export default function NumberNinjaGame() {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearTimer();
-          finishGame(score);
+          finishGame(scoreRef.current);
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
     return () => clearTimer();
-  }, [state, score]);
+  }, [state]);
 
   useEffect(() => {
     if (inputRef.current && state === 'playing') {
@@ -140,7 +145,10 @@ export default function NumberNinjaGame() {
   return <div className='space-y-4'>
     <div className='glass p-4 flex flex-wrap gap-2 items-center'>
       <span className='text-slate-300 text-sm'>ระดับความยาก</span>
-      {Object.keys(difficultyConfig).map((level) => <button key={level} className={`px-3 py-1 rounded-lg ${difficulty === level ? 'bg-cyan-300 text-black font-bold' : 'glass'}`} onClick={() => { setDifficulty(level); if (state !== 'playing') nextQuestion(level); }} disabled={state === 'playing'}>{level}</button>)}
+      {Object.keys(difficultyConfig).map((level) => <button key={level} className={`px-3 py-1 rounded-lg ${difficulty === level ? 'bg-cyan-300 text-black font-bold' : 'glass'}`} onClick={() => {
+        setDifficulty(level);
+        nextQuestion(level);
+      }}>{level}</button>)}
     </div>
 
     <div className='grid grid-cols-2 md:grid-cols-6 gap-3'>
