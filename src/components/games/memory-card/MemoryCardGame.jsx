@@ -49,5 +49,5 @@ export default function MemoryCardGame() {
     }
   };
 
-  return <div className='space-y-3'><div className='glass p-3 flex gap-3'><span>Moves: {moves}</span><span>Time: {time}s</span><span>Matched: {cards.filter((c) => c.matched).length / 2}/8</span><button onClick={reset} className='glass px-2'>Reset Game</button></div><MemoryCardBoard cards={cards} flipped={flipped} onFlip={flip} locked={locked} />{result && <div className='glass p-4 animate-in-pop'><p className={`text-lg font-bold ${result.tone}`}>{result.title}</p><p className='text-sm text-slate-200'>{result.detail}</p></div>}</div>;
+  return <div className='space-y-3'><div className='font-hud metal-card p-3 flex gap-3'><span>Moves: {moves}</span><span>Time: {time}s</span><span>Matched: {cards.filter((c) => c.matched).length / 2}/8</span><button onClick={reset} className='metal-card px-2'>Reset Game</button></div><MemoryCardBoard cards={cards} flipped={flipped} onFlip={flip} locked={locked} />{result && <div className='metal-card p-4 animate-in-pop'><p className={`text-lg font-bold ${result.tone}`}>{result.title}</p><p className='text-sm text-slate-200'>{result.detail}</p></div>}</div>;
 }

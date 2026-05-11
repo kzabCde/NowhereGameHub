@@ -143,36 +143,36 @@ export default function NumberNinjaGame() {
       : ''), [feedback]);
 
   return <div className='space-y-4'>
-    <div className='glass p-4 flex flex-wrap gap-2 items-center'>
-      <span className='text-slate-300 text-sm'>ระดับความยาก</span>
-      {Object.keys(difficultyConfig).map((level) => <button key={level} className={`px-3 py-1 rounded-lg ${difficulty === level ? 'bg-cyan-300 text-black font-bold' : 'glass'}`} onClick={() => {
+    <div className='metal-card p-4 flex flex-wrap gap-2 items-center'>
+      <span className='font-hud text-slate-300 text-sm'>ระดับความยาก</span>
+      {Object.keys(difficultyConfig).map((level) => <button key={level} className={`font-hud px-3 py-1 rounded-lg ${difficulty === level ? 'bg-white text-black dark:bg-white dark:text-black font-bold' : 'metal-card'}`} onClick={() => {
         setDifficulty(level);
         nextQuestion(level);
       }}>{level}</button>)}
     </div>
 
     <div className='grid grid-cols-2 md:grid-cols-6 gap-3'>
-      <div className='glass p-3'><p className='text-xs text-slate-300'>เวลา</p><p className='text-xl font-bold'>{timeLeft}s</p></div>
-      <div className='glass p-3'><p className='text-xs text-slate-300'>คะแนน</p><p className='text-xl font-bold'>{score}</p></div>
-      <div className='glass p-3'><p className='text-xs text-slate-300'>Best</p><p className='text-xl font-bold'>{bestScore}</p></div>
-      <div className='glass p-3'><p className='text-xs text-slate-300'>Streak</p><p className='text-xl font-bold'>{streak}</p></div>
-      <div className='glass p-3'><p className='text-xs text-slate-300'>Best Streak</p><p className='text-xl font-bold'>{bestStreak}</p></div>
-      <div className='glass p-3'><p className='text-xs text-slate-300'>Mistakes</p><p className='text-xl font-bold'>{mistakes}</p></div>
+      <div className='metal-card p-3'><p className='font-hud text-xs text-slate-300'>เวลา</p><p className='font-hud text-xl font-bold'>{timeLeft}s</p></div>
+      <div className='metal-card p-3'><p className='font-hud text-xs text-slate-300'>คะแนน</p><p className='font-hud text-xl font-bold'>{score}</p></div>
+      <div className='metal-card p-3'><p className='font-hud text-xs text-slate-300'>Best</p><p className='font-hud text-xl font-bold'>{bestScore}</p></div>
+      <div className='metal-card p-3'><p className='font-hud text-xs text-slate-300'>Streak</p><p className='font-hud text-xl font-bold'>{streak}</p></div>
+      <div className='metal-card p-3'><p className='font-hud text-xs text-slate-300'>Best Streak</p><p className='font-hud text-xl font-bold'>{bestStreak}</p></div>
+      <div className='metal-card p-3'><p className='font-hud text-xs text-slate-300'>Mistakes</p><p className='font-hud text-xl font-bold'>{mistakes}</p></div>
     </div>
 
-    <div className={`glass p-6 rounded-3xl space-y-4 ${feedbackClass}`}>
+    <div className={`metal-card p-6 rounded-3xl space-y-4 ${feedbackClass}`}>
       <p className='text-center text-slate-300'>ตอบโจทย์ให้เร็วที่สุดภายใน 60 วินาที</p>
-      <p className='text-center text-4xl md:text-6xl font-black tracking-wide'>{question.text}</p>
+      <p className='text-center font-hud text-4xl md:text-6xl font-black tracking-wide'>{question.text}</p>
       <div className='flex flex-col sm:flex-row gap-2 max-w-xl mx-auto'>
-        <input ref={inputRef} className='flex-1 bg-white/10 rounded-xl px-4 py-3 text-lg' value={answerInput} onChange={(e) => setAnswerInput(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') submitAnswer(); }} inputMode='numeric' placeholder='คำตอบของคุณ' disabled={state !== 'playing'} />
-        <button className='px-5 py-3 rounded-xl bg-emerald-400 text-black font-bold disabled:opacity-50' onClick={submitAnswer} disabled={state !== 'playing'}>ส่งคำตอบ</button>
+        <input ref={inputRef} className='font-hud flex-1 bg-white/10 rounded-xl px-4 py-3 text-lg' value={answerInput} onChange={(e) => setAnswerInput(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') submitAnswer(); }} inputMode='numeric' placeholder='คำตอบของคุณ' disabled={state !== 'playing'} />
+        <button className='px-5 py-3 rounded-xl bg-white text-black dark:bg-white dark:text-black font-bold disabled:opacity-50' onClick={submitAnswer} disabled={state !== 'playing'}>ส่งคำตอบ</button>
       </div>
       <div className='text-center'>
-        <button className='px-6 py-3 rounded-xl bg-cyan-300 text-black font-bold' onClick={startGame}>{state === 'idle' ? 'เริ่มเกม' : state === 'finished' ? 'เริ่มใหม่' : 'รีสตาร์ต'}</button>
+        <button className='px-6 py-3 rounded-xl bg-white text-black dark:bg-white dark:text-black font-bold' onClick={startGame}>{state === 'idle' ? 'เริ่มเกม' : state === 'finished' ? 'เริ่มใหม่' : 'รีสตาร์ต'}</button>
       </div>
     </div>
 
-    {state === 'finished' && <div className='glass p-4 text-center'>
+    {state === 'finished' && <div className='metal-card p-4 text-center'>
       <p className='text-xl font-bold text-amber-200'>หมดเวลา!</p>
       <p>คะแนนสุดท้าย: <b>{score}</b></p>
       <p>สถิติคอมโบสูงสุด: <b>{bestStreak}</b></p>

@@ -83,18 +83,18 @@ export default function XOGame() {
   };
 
   return <div className='space-y-3'>
-    <div className='glass p-3 flex gap-2'>
+    <div className='metal-card p-3 flex gap-2'>
       <select value={difficulty} onChange={(e) => setDifficulty(e.target.value)} className='bg-white/10 rounded-xl px-2'>
         <option value='easy'>easy</option><option value='normal'>normal</option><option value='hard'>hard</option>
       </select>
-      <button className='glass px-2' onClick={reset}>Reset Game</button>
+      <button className='metal-card px-2' onClick={reset}>Reset Game</button>
     </div>
-    <p className='font-semibold'>{status}</p>
+    <p className='font-brand font-semibold'>{status}</p>
     <XOBoard board={board} onClick={move} winning={winning} locked={locked} />
     <div className='grid grid-cols-3 gap-2 text-sm'>
-      <div className='glass p-2'>Player {scores.p}</div><div className='glass p-2'>Machine {scores.m}</div><div className='glass p-2'>Draw {scores.d}</div>
+      <div className='font-hud metal-card p-2'>Player {scores.p}</div><div className='font-hud metal-card p-2'>Machine {scores.m}</div><div className='font-hud metal-card p-2'>Draw {scores.d}</div>
     </div>
-    {result && <div className='glass p-4 animate-in-pop'>
+    {result && <div className='metal-card p-4 animate-in-pop'>
       <p className={`text-lg font-bold ${result.tone}`}>{result.title}</p>
       <p className='text-sm text-slate-200'>{result.detail}</p>
     </div>}

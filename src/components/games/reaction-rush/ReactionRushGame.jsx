@@ -86,27 +86,27 @@ export default function ReactionRushGame() {
 
   return <div className='space-y-4'>
     <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-      <div className='glass p-3'><p className='text-xs text-slate-300'>Best Score</p><p className='text-xl font-bold'>{formatMs(bestScore)}</p></div>
-      <div className='glass p-3'><p className='text-xs text-slate-300'>Last Reaction</p><p className='text-xl font-bold'>{formatMs(lastReaction)}</p></div>
-      <div className='glass p-3'><p className='text-xs text-slate-300'>False Start</p><p className='text-xl font-bold'>{falseStarts}</p></div>
-      <div className='glass p-3'><p className='text-xs text-slate-300'>Attempts</p><p className='text-xl font-bold'>{attempts}</p></div>
+      <div className='metal-card p-3'><p className='font-hud text-xs text-slate-300'>Best Score</p><p className='font-hud text-xl font-bold'>{formatMs(bestScore)}</p></div>
+      <div className='metal-card p-3'><p className='font-hud text-xs text-slate-300'>Last Reaction</p><p className='font-hud text-xl font-bold'>{formatMs(lastReaction)}</p></div>
+      <div className='metal-card p-3'><p className='font-hud text-xs text-slate-300'>False Start</p><p className='font-hud text-xl font-bold'>{falseStarts}</p></div>
+      <div className='metal-card p-3'><p className='font-hud text-xs text-slate-300'>Attempts</p><p className='font-hud text-xl font-bold'>{attempts}</p></div>
     </div>
 
     <button
       type='button'
-      className={`glass w-full max-w-3xl mx-auto min-h-[260px] md:min-h-[320px] rounded-3xl border-2 transition-all duration-300 grid place-items-center px-4 text-center ${panelClass}`}
+      className={`metal-card w-full max-w-3xl mx-auto min-h-[260px] md:min-h-[320px] rounded-3xl border-2 transition-all duration-300 grid place-items-center px-4 text-center ${panelClass}`}
       onClick={handleAreaClick}
       aria-label='Reaction area'
     >
       <div>
-        <p className='text-2xl md:text-4xl font-extrabold mb-3'>{statusText}</p>
+        <p className='font-hud text-2xl md:text-4xl font-extrabold mb-3'>{statusText}</p>
         {state === 'result' && lastReaction !== null && <p className='text-lg text-cyan-200'>{getPerformanceLabel(lastReaction)}</p>}
       </div>
     </button>
 
     <div className='flex justify-center'>
       {(state === 'idle' || state === 'result' || state === 'false-start') && (
-        <button className='px-6 py-3 rounded-xl bg-emerald-400 text-black font-bold active:scale-95 transition' onClick={startRound}>
+        <button className='px-6 py-3 rounded-xl bg-white text-black dark:bg-white dark:text-black font-bold active:scale-95 transition' onClick={startRound}>
           {state === 'idle' ? 'เริ่มเกม' : 'ลองอีกครั้ง'}
         </button>
       )}
