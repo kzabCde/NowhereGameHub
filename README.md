@@ -18,9 +18,13 @@ Play small games anywhere, even nowhere.
 - Snake
 - Reaction Rush
 - Number Ninja
+- Aim Grid
+- Grid Runner
 - Responsive UI
 - Reflex timing game
 - Fast mental math game
+- Aim Grid: reflex and accuracy target-click game
+- Grid Runner: tactical grid maze/pathfinding game
 - Local-first persistence
 - Vercel-ready deployment
 
@@ -59,6 +63,12 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - snakeBestScore
 - reactionRushBestScore
 - numberNinjaBestScore
+- aimGridBestScore
+- aimGridBestAccuracy
+- aimGridTotalPlays
+- gridRunnerBestScore
+- gridRunnerBestSteps
+- gridRunnerBestTime
 - connectFourPlayerWins
 - connectFourMachineWins
 - connectFourDraws
@@ -85,3 +95,5 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - /games/snake
 - /games/reaction-rush
 - /games/number-ninja
+- /games/aim-grid
+- /games/grid-runner
