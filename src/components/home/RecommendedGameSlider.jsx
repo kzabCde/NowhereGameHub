@@ -78,7 +78,7 @@ export default function RecommendedGameSlider({ games = [], onPlay, onOpenDetail
         </div>
       </div>
       <div className='md:col-span-2'>
-        <div className={`group flex min-h-52 items-center justify-center rounded-2xl text-7xl transition-transform duration-500 ${!reducedMotion ? 'animate-slider-icon-pop' : ''} ${direction > 0 || reducedMotion ? 'translate-x-0' : '-translate-x-0'} scale-105`}>
+        <div className={`surface-panel border-frame-strong group flex min-h-52 items-center justify-center rounded-2xl text-7xl text-black dark:text-white bg-white/95 dark:bg-black/35 transition-transform duration-500 ${!reducedMotion ? 'animate-slider-icon-pop' : ''} ${direction > 0 || reducedMotion ? 'translate-x-0' : '-translate-x-0'} scale-105`}>
           <span className='transition-transform duration-500 group-hover:scale-110'>{currentGame.icon || '◈'}</span>
         </div>
       </div>
