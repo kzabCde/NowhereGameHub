@@ -48,7 +48,7 @@ export default function RecommendedGameSlider({ games = [], onPlay, onOpenDetail
   const isFavorite = (id) => favorites.includes(id);
 
   const handlePlay = (game) => {
-    if (!game?.id) return;
+    if (!game?.id || !game?.url) return;
     playClickSound?.();
     if (onPlay) return onPlay(game.id);
     const currentRecent = getArrayStorage('nowhereGameHubRecentPlayed');
@@ -72,7 +72,7 @@ export default function RecommendedGameSlider({ games = [], onPlay, onOpenDetail
         <p className='mt-1 text-zinc-500 dark:text-zinc-400'>{currentGame.thaiTitle || '-'}</p>
         <p className='mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300'>{currentGame.description}</p>
         <div className='mt-5 grid grid-cols-1 gap-2 sm:grid-cols-3'>
-          <Link href={currentGame.url || '#'} onClick={() => handlePlay(currentGame)} className='btn-primary-mono rounded-xl px-4 py-2 text-center'>เล่นเลย</Link>
+          <Link href={currentGame.url} onClick={() => handlePlay(currentGame)} className='btn-primary-mono rounded-xl px-4 py-2 text-center'>เล่นเลย</Link>
           <button type='button' onClick={() => { playClickSound?.(); onOpenDetail?.(currentGame); }} className='surface-control focus-frame rounded-xl px-4 py-2'>รายละเอียด</button>
           {onToggleFavorite ? <button type='button' onClick={() => { playClickSound?.(); onToggleFavorite(currentGame.id); }} className='surface-control focus-frame rounded-xl px-4 py-2'>{isFavorite(currentGame.id) ? '♥ โปรด' : '♡ โปรด'}</button> : null}
         </div>
