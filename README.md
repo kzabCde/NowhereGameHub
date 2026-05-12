@@ -22,6 +22,8 @@ Play small games anywhere, even nowhere.
 - Grid Runner
 - Math Rain
 - Laser Maze
+- Code Breaker
+- Cipher Typing
 - Responsive UI
 - Reflex timing game
 - Fast mental math game
@@ -88,6 +90,15 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - xoDraws
 - memoryCardBestMoves
 - memoryCardBestTime
+- codeBreakerBestScore
+- codeBreakerBestAttempts
+- codeBreakerBestTime
+- codeBreakerTotalWins
+- codeBreakerTotalPlays
+- cipherTypingBestScore
+- cipherTypingBestAccuracy
+- cipherTypingBestStreak
+- cipherTypingTotalPlays
 
 ## Future Improvements
 - Add Pong
@@ -110,3 +121,9 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - /games/grid-runner
 - /games/math-rain
 - /games/laser-maze
+- /games/code-breaker
+- /games/cipher-typing
+
+## New Game Features
+- Code Breaker: sci-fi deduction code cracking game
+- Cipher Typing: terminal command typing speed game
