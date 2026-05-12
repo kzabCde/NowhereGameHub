@@ -78,6 +78,7 @@ html:not(.dark) .surface-danger { background: rgba(239,68,68,.10); border-color:
 .boot-scan-line { position:absolute; left:0; right:0; top:0; height:32px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,.2), transparent); animation: bootScan 1.2s linear infinite; pointer-events:none; }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .surface-card,.surface-control,.surface-shell,.surface-panel { transition-duration:1ms !important; }
   .surface-card:hover,.surface-control:hover,.surface-control:active { transform:none !important; }
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; }

@@ -44,7 +44,11 @@ export default function HeroSection({ onRandom }) {
 
             <button
               type="button"
-              onClick={onRandom}
+              onClick={() => {
+                if (typeof onRandom === 'function') {
+                  onRandom();
+                }
+              }}
               className="surface-control focus-frame inline-flex items-center justify-center rounded-2xl px-5 py-3 font-bold"
             >
               สุ่มเกมให้เล่น
