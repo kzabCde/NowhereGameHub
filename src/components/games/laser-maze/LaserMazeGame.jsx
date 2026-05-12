@@ -82,12 +82,12 @@ export default function LaserMazeGame() {
           const row = Math.floor(i / currentPuzzle.size); const col = i % currentPuzzle.size; const key = getCellKey(row, col);
           const isEmitter = row === currentPuzzle.emitter.row && col === currentPuzzle.emitter.col;
           const isTarget = row === currentPuzzle.target.row && col === currentPuzzle.target.col;
-          return <button key={key} onClick={() => rotate(row, col)} className={`aspect-square border rounded-md font-hud text-lg flex items-center justify-center ${wallSet.has(key) ? 'bg-white/20' : 'bg-black/40'} ${pathSet.has(key) ? 'shadow-[inset_0_0_0_1px_rgba(255,255,255,0.85)]' : ''} ${isTarget && trace.hitTarget ? 'animate-pulse' : ''}`}>
+          return <button key={key} onClick={() => rotate(row, col)} className={`aspect-square border rounded-md font-hud text-lg flex items-center justify-center ${wallSet.has(key) ? 'bg-white/20' : 'bg-black/40'} ${pathSet.has(key) ? 'shadow-[inset_0_0_0_1px_rgba(248,113,113,0.95)] bg-rose-500/10' : ''} ${isTarget && trace.hitTarget ? 'animate-pulse' : ''}`}>
             {isEmitter ? '▶' : isTarget ? '◎' : wallSet.has(key) ? '■' : (mirrorMap.get(key) || '')}
           </button>;
         })}
       </div>
-      <p className='mt-3 text-xs text-slate-400 font-hud'>hitTarget: {String(trace.hitTarget)} | blocked: {String(trace.blocked)} | exited: {String(trace.exited)} | looped: {String(trace.looped)}</p>
+      <p className='mt-3 text-xs text-rose-300/90 font-hud'>เลเซอร์สีแดง | hitTarget: {String(trace.hitTarget)} | blocked: {String(trace.blocked)} | exited: {String(trace.exited)} | looped: {String(trace.looped)}</p>
       {completed && <div className='mt-3 border border-emerald-300/40 rounded-xl p-3'><p className='font-hud'>สำเร็จ! หมุน {rotationCount} ครั้ง / {elapsedTime} วินาที</p>{newBest && <p className='font-hud text-emerald-200'>คะแนนดีที่สุดใหม่!</p>}</div>}
     </div>
   </div>;
