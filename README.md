@@ -26,6 +26,7 @@ Play small games anywhere, even nowhere.
 - Cipher Typing
 - Circuit Link
 - Memory Sequence
+- Core Defense
 - Responsive UI
 - Reflex timing game
 - Fast mental math game
@@ -108,6 +109,9 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - circuitLinkBestScore
 - circuitLinkBestRotations
 - circuitLinkBestTime
+- coreDefenseBestWave
+- coreDefenseBestScore
+- coreDefenseBestKills
 
 ## Future Improvements
 - Add Pong
@@ -134,9 +138,11 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - /games/cipher-typing
 - /games/memory-sequence
 - /games/circuit-link
+- /games/core-defense
 
 ## New Game Features
 - Code Breaker: sci-fi deduction code cracking game
 - Cipher Typing: terminal command typing speed game
 - Memory Sequence: signal sequence memory game
 - Circuit Link: circuit rotation routing puzzle
+- Core Defense: lightweight tower defense with tower placement, upgrades, enemy waves, credits, and local best scores
