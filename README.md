@@ -20,9 +20,13 @@ Play small games anywhere, even nowhere.
 - Number Ninja
 - Aim Grid
 - Grid Runner
+- Math Rain
+- Laser Maze
 - Responsive UI
 - Reflex timing game
 - Fast mental math game
+- Math Rain: falling math questions arcade brain game
+- Laser Maze: mirror reflection logic puzzle game
 - Aim Grid: reflex and accuracy target-click game
 - Grid Runner: tactical grid maze/pathfinding game
 - Local-first persistence
@@ -69,6 +73,12 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - gridRunnerBestScore
 - gridRunnerBestSteps
 - gridRunnerBestTime
+- mathRainBestScore
+- mathRainBestStreak
+- mathRainTotalPlays
+- laserMazeBestScore
+- laserMazeBestMoves
+- laserMazeBestTime
 - connectFourPlayerWins
 - connectFourMachineWins
 - connectFourDraws
@@ -97,3 +107,5 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - /games/number-ninja
 - /games/aim-grid
 - /games/grid-runner
+- /games/math-rain
+- /games/laser-maze
