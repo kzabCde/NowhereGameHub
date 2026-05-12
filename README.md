@@ -24,6 +24,8 @@ Play small games anywhere, even nowhere.
 - Laser Maze
 - Code Breaker
 - Cipher Typing
+- Circuit Link
+- Memory Sequence
 - Responsive UI
 - Reflex timing game
 - Fast mental math game
@@ -99,6 +101,13 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - cipherTypingBestAccuracy
 - cipherTypingBestStreak
 - cipherTypingTotalPlays
+- memorySequenceBestScore
+- memorySequenceBestLevel
+- memorySequenceBestStreak
+- memorySequenceTotalPlays
+- circuitLinkBestScore
+- circuitLinkBestRotations
+- circuitLinkBestTime
 
 ## Future Improvements
 - Add Pong
@@ -123,7 +132,11 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - /games/laser-maze
 - /games/code-breaker
 - /games/cipher-typing
+- /games/memory-sequence
+- /games/circuit-link
 
 ## New Game Features
 - Code Breaker: sci-fi deduction code cracking game
 - Cipher Typing: terminal command typing speed game
+- Memory Sequence: signal sequence memory game
+- Circuit Link: circuit rotation routing puzzle
