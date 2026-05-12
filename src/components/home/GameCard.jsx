@@ -15,9 +15,9 @@ export default function GameCard({game,best,isFavorite,onFav,onDetail,onPlay}){
     <p className='my-2 text-sm text-secondary'>{game.description}</p>
     <p className='font-hud text-xs text-muted'>Best: {available?best ?? 0:'-'}</p>
     <div className='mt-3 flex flex-wrap gap-2 text-sm'>
-      <button className='surface-control focus-frame px-2 py-1' onClick={()=>onFav(game.id)}>{isFavorite?'♥ โปรด':'♡ โปรด'}</button>
-      <button className='surface-control focus-frame px-2 py-1' onClick={()=>onDetail(game)}>รายละเอียด</button>
-      {available?<Link className='btn-primary-mono px-2 py-1' href={game.url} onClick={()=>onPlay(game.id)}>เล่น</Link>:<button disabled className='surface-control px-2 py-1'>Coming Soon</button>}
+      <button type='button' aria-label={`สลับรายการโปรด ${game.title}`} className='surface-control focus-frame px-2 py-1' onClick={()=>onFav(game.id)}>{isFavorite?'♥ โปรด':'♡ โปรด'}</button>
+      <button type='button' aria-label={`ดูรายละเอียด ${game.title}`} className='surface-control focus-frame px-2 py-1' onClick={()=>onDetail(game)}>รายละเอียด</button>
+      {available?<Link className='btn-primary-mono px-2 py-1' href={game.url} onClick={()=>onPlay(game.id)}>เล่น</Link>:<button type='button' disabled className='surface-control px-2 py-1'>Coming Soon</button>}
     </div>
   </div>;
 }

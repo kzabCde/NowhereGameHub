@@ -1,12 +1,39 @@
 'use client';
-import { useMemo, useState } from 'react';
-import Header from '@/components/layout/Header'; import PageShell from '@/components/layout/PageShell';
-import HeroSection from '@/components/home/HeroSection'; import RecommendedGameSlider from '@/components/home/RecommendedGameSlider'; import StatsPanel from '@/components/home/StatsPanel'; import SearchAndFilter from '@/components/home/SearchAndFilter'; import GameGrid from '@/components/home/GameGrid'; import RecentPlayed from '@/components/home/RecentPlayed'; import FavoriteGames from '@/components/home/FavoriteGames'; import GameDetailModal from '@/components/home/GameDetailModal'; import RandomGameModal from '@/components/home/RandomGameModal';
-import { games } from '@/lib/games'; import { getArrayStorage, setArrayStorage, getNumberStorage } from '@/lib/storage';
-export default function Home(){const [favorites,setFavorites]=useState(getArrayStorage('nowhereGameHubFavorites')); const [recent,setRecent]=useState(getArrayStorage('nowhereGameHubRecentPlayed')); const [search,setSearch]=useState(''); const [category,setCategory]=useState('all'); const [detail,setDetail]=useState(null); const [random,setRandom]=useState(undefined);
-const filtered=useMemo(()=>games.filter(g=>(category==='all'||g.category===category)&&(`${g.title} ${g.thaiTitle} ${g.description} ${g.longDescription} ${g.tags.join(' ')}`).toLowerCase().includes(search.toLowerCase())),[search,category]);
-const favGames=games.filter(g=>favorites.includes(g.id)); const recentGames=recent.map(id=>games.find(g=>g.id===id)).filter(Boolean);
-const toggleFav=(id)=>{const n=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id]; setFavorites(n); setArrayStorage('nowhereGameHubFavorites',n)};
-const addRecent=(id)=>{const n=[id,...recent.filter(x=>x!==id)].slice(0,6); setRecent(n); setArrayStorage('nowhereGameHubRecentPlayed',n)};
-const randomPick=()=>{const a=games.filter(g=>g.status==='available'); setRandom(a.length?a[Math.floor(Math.random()*a.length)]:null);};
-return <PageShell><Header/><HeroSection onRandom={randomPick}/><RecommendedGameSlider games={games} onPlay={addRecent} onOpenDetail={setDetail} favorites={favorites} onToggleFavorite={toggleFav}/><StatsPanel total={games.length} available={games.filter(g=>g.status==='available').length} favorites={favorites.length} recent={recent.length}/><RecentPlayed games={recentGames} onClear={()=>{setRecent([]);setArrayStorage('nowhereGameHubRecentPlayed',[])}}/><FavoriteGames games={favGames}/><SearchAndFilter search={search} setSearch={setSearch} category={category} setCategory={setCategory}/><GameGrid games={filtered} onFav={toggleFav} onDetail={setDetail} onPlay={addRecent} isFavorite={(id)=>favorites.includes(id)} best={(g)=>getNumberStorage(g.bestScoreKey,0)}/><GameDetailModal game={detail} onClose={()=>setDetail(null)} onFav={toggleFav} isFavorite={detail?favorites.includes(detail.id):false} onPlay={addRecent} best={detail?getNumberStorage(detail.bestScoreKey,0):0}/><RandomGameModal game={random} onClose={()=>setRandom(undefined)} onAgain={randomPick} onPlay={addRecent}/></PageShell>}
+import { useEffect, useMemo, useState } from 'react';
+import Header from '@/components/layout/Header';
+import PageShell from '@/components/layout/PageShell';
+import HeroSection from '@/components/home/HeroSection';
+import RecommendedGameSlider from '@/components/home/RecommendedGameSlider';
+import StatsPanel from '@/components/home/StatsPanel';
+import SearchAndFilter from '@/components/home/SearchAndFilter';
+import GameGrid from '@/components/home/GameGrid';
+import RecentPlayed from '@/components/home/RecentPlayed';
+import FavoriteGames from '@/components/home/FavoriteGames';
+import GameDetailModal from '@/components/home/GameDetailModal';
+import RandomGameModal from '@/components/home/RandomGameModal';
+import { games } from '@/lib/games';
+import { getArrayStorage, setArrayStorage, getNumberStorage } from '@/lib/storage';
+
+export default function Home() {
+  const [favorites, setFavorites] = useState([]);
+  const [recent, setRecent] = useState([]);
+  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState('all');
+  const [detail, setDetail] = useState(null);
+  const [random, setRandom] = useState(undefined);
+
+  useEffect(() => {
+    setFavorites(getArrayStorage('nowhereGameHubFavorites'));
+    setRecent(getArrayStorage('nowhereGameHubRecentPlayed'));
+  }, []);
+
+  const filtered = useMemo(() => games.filter((g) => (category === 'all' || g.category === category) && (`${g.title} ${g.thaiTitle} ${g.description} ${g.longDescription} ${g.tags.join(' ')}`).toLowerCase().includes(search.toLowerCase())), [search, category]);
+  const favGames = games.filter((g) => favorites.includes(g.id));
+  const recentGames = recent.map((id) => games.find((g) => g.id === id)).filter(Boolean);
+
+  const toggleFav = (id) => { const n = favorites.includes(id) ? favorites.filter((x) => x !== id) : [...favorites, id]; setFavorites(n); setArrayStorage('nowhereGameHubFavorites', n); };
+  const addRecent = (id) => { const n = [id, ...recent.filter((x) => x !== id)].slice(0, 6); setRecent(n); setArrayStorage('nowhereGameHubRecentPlayed', n); };
+  const randomPick = () => { const a = games.filter((g) => g.status === 'available'); setRandom(a.length ? a[Math.floor(Math.random() * a.length)] : null); };
+
+  return <PageShell><Header /><HeroSection onRandom={randomPick} /><RecommendedGameSlider games={games} onPlay={addRecent} onOpenDetail={setDetail} favorites={favorites} onToggleFavorite={toggleFav} /><StatsPanel total={games.length} available={games.filter((g) => g.status === 'available').length} favorites={favorites.length} recent={recent.length} /><RecentPlayed games={recentGames} onClear={() => { setRecent([]); setArrayStorage('nowhereGameHubRecentPlayed', []); }} /><FavoriteGames games={favGames} /><SearchAndFilter search={search} setSearch={setSearch} category={category} setCategory={setCategory} /><GameGrid games={filtered} onFav={toggleFav} onDetail={setDetail} onPlay={addRecent} isFavorite={(id) => favorites.includes(id)} best={(g) => getNumberStorage(g.bestScoreKey, 0)} /><GameDetailModal game={detail} onClose={() => setDetail(null)} onFav={toggleFav} isFavorite={detail ? favorites.includes(detail.id) : false} onPlay={addRecent} best={detail ? getNumberStorage(detail.bestScoreKey, 0) : 0} /><RandomGameModal game={random} onClose={() => setRandom(undefined)} onAgain={randomPick} onPlay={addRecent} /></PageShell>;
+}
