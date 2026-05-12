@@ -26,7 +26,7 @@ Play small games anywhere, even nowhere.
 - Reflex timing game
 - Fast mental math game
 - Math Rain: falling math questions arcade brain game
-- Laser Maze: mirror reflection logic puzzle game
+- Laser Maze: randomized solvable mirror reflection puzzle with rotation-based scoring
 - Aim Grid: reflex and accuracy target-click game
 - Grid Runner: tactical grid maze/pathfinding game
 - Local-first persistence
@@ -77,7 +77,8 @@ See `src/app`, `src/components`, `src/lib` separated by pages, UI components, an
 - mathRainBestStreak
 - mathRainTotalPlays
 - laserMazeBestScore
-- laserMazeBestMoves
+- laserMazeBestMoves (legacy)
+- laserMazeBestRotations
 - laserMazeBestTime
 - connectFourPlayerWins
 - connectFourMachineWins
