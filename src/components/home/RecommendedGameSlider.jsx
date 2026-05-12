@@ -57,24 +57,24 @@ export default function RecommendedGameSlider({ games = [], onPlay, onOpenDetail
 
   if (!recommendedGames.length) return null;
 
-  return <section className='surface-card rounded-3xl p-4 md:p-6' onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} onFocusCapture={() => setIsPaused(true)} onBlurCapture={() => setIsPaused(false)}>
+  return <section className='surface-shell rounded-3xl p-4 md:p-6' onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} onFocusCapture={() => setIsPaused(true)} onBlurCapture={() => setIsPaused(false)}>
     <div className='mb-4 flex items-center justify-between gap-3'>
       <div><p className='font-hud text-[10px] uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400'>Recommended</p><h3 className='font-brand mt-1 text-2xl font-black md:text-3xl'>เกมแนะนำ</h3></div>
       <div className='hidden gap-2 sm:flex'>
-        <button type='button' aria-label='ก่อนหน้า' onClick={goPrev} disabled={!canSlide} className='btn-ghost-mono rounded-xl px-3 py-2 text-sm transition-all duration-200 hover:border-white/30 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40'>ก่อนหน้า</button>
-        <button type='button' aria-label='ถัดไป' onClick={goNext} disabled={!canSlide} className='btn-ghost-mono rounded-xl px-3 py-2 text-sm transition-all duration-200 hover:border-white/30 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40'>ถัดไป</button>
+        <button type='button' aria-label='ก่อนหน้า' onClick={goPrev} disabled={!canSlide} className='surface-control focus-frame rounded-xl px-3 py-2 text-sm transition-all duration-200 hover:border-white/30 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40'>ก่อนหน้า</button>
+        <button type='button' aria-label='ถัดไป' onClick={goNext} disabled={!canSlide} className='surface-control focus-frame rounded-xl px-3 py-2 text-sm transition-all duration-200 hover:border-white/30 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40'>ถัดไป</button>
       </div>
     </div>
 
-    <article key={currentGame.id} className={`surface-panel grid gap-5 overflow-hidden rounded-2xl p-4 md:grid-cols-5 md:p-6 ${reducedMotion ? 'transition-opacity duration-300' : 'animate-fade-slide-in'}`}>
+    <article key={currentGame.id} className={`surface-card grid gap-5 overflow-hidden rounded-2xl p-4 md:grid-cols-5 md:p-6 ${reducedMotion ? 'transition-opacity duration-300' : 'animate-fade-slide-in'}`}>
       <div className='md:col-span-3'>
         <h4 className='font-brand mt-3 text-2xl font-black md:text-4xl'>{currentGame.title}</h4>
         <p className='mt-1 text-zinc-500 dark:text-zinc-400'>{currentGame.thaiTitle || '-'}</p>
         <p className='mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300'>{currentGame.description}</p>
         <div className='mt-5 grid grid-cols-1 gap-2 sm:grid-cols-3'>
           <Link href={currentGame.url || '#'} onClick={() => handlePlay(currentGame)} className='btn-primary-mono rounded-xl px-4 py-2 text-center'>เล่นเลย</Link>
-          <button type='button' onClick={() => { playClickSound?.(); onOpenDetail?.(currentGame); }} className='btn-ghost-mono rounded-xl px-4 py-2'>รายละเอียด</button>
-          {onToggleFavorite ? <button type='button' onClick={() => { playClickSound?.(); onToggleFavorite(currentGame.id); }} className='btn-ghost-mono rounded-xl px-4 py-2'>{isFavorite(currentGame.id) ? '♥ โปรด' : '♡ โปรด'}</button> : null}
+          <button type='button' onClick={() => { playClickSound?.(); onOpenDetail?.(currentGame); }} className='surface-control focus-frame rounded-xl px-4 py-2'>รายละเอียด</button>
+          {onToggleFavorite ? <button type='button' onClick={() => { playClickSound?.(); onToggleFavorite(currentGame.id); }} className='surface-control focus-frame rounded-xl px-4 py-2'>{isFavorite(currentGame.id) ? '♥ โปรด' : '♡ โปรด'}</button> : null}
         </div>
       </div>
       <div className='md:col-span-2'>
@@ -85,11 +85,11 @@ export default function RecommendedGameSlider({ games = [], onPlay, onOpenDetail
     </article>
 
     <div className='mt-4 flex items-center justify-between sm:justify-center'>
-      <button type='button' aria-label='ก่อนหน้า' onClick={goPrev} disabled={!canSlide} className='btn-ghost-mono sm:hidden rounded-xl px-3 py-2 text-sm disabled:opacity-40'>ก่อนหน้า</button>
+      <button type='button' aria-label='ก่อนหน้า' onClick={goPrev} disabled={!canSlide} className='surface-control focus-frame sm:hidden rounded-xl px-3 py-2 text-sm disabled:opacity-40'>ก่อนหน้า</button>
       <div className='flex items-center gap-2'>
-        {recommendedGames.map((game, index) => <button key={game.id} type='button' aria-label={`ไปยังสไลด์ที่ ${index + 1}`} onClick={() => goTo(index, index >= currentIndex ? 1 : -1)} className={`rounded-full bg-zinc-800 transition-all duration-300 dark:bg-white ${index === currentIndex ? 'w-8 opacity-100' : 'w-2 opacity-40'} h-2`} />)}
+        {recommendedGames.map((game, index) => <button key={game.id} type='button' aria-label={`ไปยังสไลด์ที่ ${index + 1}`} onClick={() => goTo(index, index >= currentIndex ? 1 : -1)} className={`surface-control focus-frame rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 opacity-100' : 'w-2 opacity-40'} h-2`} />)}
       </div>
-      <button type='button' aria-label='ถัดไป' onClick={goNext} disabled={!canSlide} className='btn-ghost-mono sm:hidden rounded-xl px-3 py-2 text-sm disabled:opacity-40'>ถัดไป</button>
+      <button type='button' aria-label='ถัดไป' onClick={goNext} disabled={!canSlide} className='surface-control focus-frame sm:hidden rounded-xl px-3 py-2 text-sm disabled:opacity-40'>ถัดไป</button>
     </div>
   </section>;
 }

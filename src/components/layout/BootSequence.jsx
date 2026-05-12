@@ -71,7 +71,7 @@ export default function BootSequence() {
 
   return (
     <div className={`fixed inset-0 z-[9999] app-bg flex items-center justify-center p-6 ${phase === 'out' ? 'animate-boot-fade-out' : 'animate-boot-fade-in'}`}>
-      <div className='surface-panel relative w-full max-w-xl overflow-hidden rounded-2xl border p-5 shadow-2xl'>
+      <div className='surface-card border-frame-strong relative w-full max-w-xl overflow-hidden rounded-2xl border p-5 shadow-2xl'>
         <div className='boot-scan-line' aria-hidden='true' />
         <p className='font-hud text-[10px] tracking-[0.22em] text-zinc-500 dark:text-zinc-400'>NOWHERE BOOT PROTOCOL</p>
 
