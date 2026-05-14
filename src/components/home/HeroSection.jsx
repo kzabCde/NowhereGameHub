@@ -1,3 +1,4 @@
+import NowhereGameHubLogo from '@/components/brand/NowhereGameHubLogo';
 export default function HeroSection({ onRandom }) {
   return (
     <section className="surface-shell relative overflow-hidden rounded-3xl p-6 md:p-8">
@@ -18,9 +19,7 @@ export default function HeroSection({ onRandom }) {
           </div>
 
           <div className="space-y-3">
-            <h1 className="bg-gradient-to-r from-blue-700 via-sky-500 to-cyan-400 bg-clip-text font-brand text-4xl font-black leading-tight text-transparent dark:from-blue-200 dark:via-sky-300 dark:to-cyan-200 md:text-6xl">
-              NowhereGameHub
-            </h1>
+            <NowhereGameHubLogo href='/' animated className='mb-1' />
 
             <p className="max-w-2xl font-brand text-xl font-semibold text-secondary md:text-2xl">
               Play small games anywhere, even nowhere.
