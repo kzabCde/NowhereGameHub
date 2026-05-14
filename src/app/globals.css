@@ -4,62 +4,36 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--font-noto-thai), system-ui, sans-serif; @apply min-h-screen antialiased bg-[#f8fafc] text-neutral-950; }
-.dark body { @apply bg-[#030303] text-neutral-50; }
+body { font-family: var(--font-noto-thai), system-ui, sans-serif; @apply min-h-screen antialiased; background:#030303; color:#f8fafc; }
 .font-brand { font-family: var(--font-space-grotesk), var(--font-noto-thai), system-ui, sans-serif; }
 .font-hud { font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: .08em; }
 
-.text-primary { @apply text-neutral-950 dark:text-neutral-50; }
-.text-secondary { @apply text-neutral-600 dark:text-neutral-400; }
-.text-muted { @apply text-neutral-500; }
+.text-primary { color:#f8fafc; }
+.text-secondary { color:#a1a1aa; }
+.text-muted { color:#71717a; }
 
-.app-bg { position: relative; min-height: 100vh; overflow-x: hidden; isolation: isolate; }
-.dark .app-bg { background: radial-gradient(circle at 20% 10%, rgba(255,255,255,.07), transparent 26%), radial-gradient(circle at 80% 0%, rgba(255,255,255,.04), transparent 22%), #030303; color: #fafafa; }
-html:not(.dark) .app-bg { background: radial-gradient(circle at 20% 10%, rgba(0,0,0,.055), transparent 26%), radial-gradient(circle at 80% 0%, rgba(0,0,0,.035), transparent 22%), #f8fafc; color: #050505; }
+.app-bg { position: relative; min-height: 100vh; overflow-x: hidden; isolation: isolate; background: radial-gradient(circle at 20% 10%, rgba(255,255,255,.07), transparent 26%), radial-gradient(circle at 80% 0%, rgba(255,255,255,.04), transparent 22%), #030303; color: #fafafa; }
 .app-bg::after { content:''; position:absolute; inset:0; pointer-events:none; z-index:0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size:32px 32px; opacity:.12; }
-html:not(.dark) .app-bg::after { background-image: linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px); opacity:.08; }
 
-.surface-shell { @apply rounded-3xl backdrop-blur-xl border transition-all duration-200; }
-.dark .surface-shell { background: rgba(255,255,255,.025); border-color: rgba(255,255,255,.08); box-shadow: 0 24px 80px rgba(0,0,0,.35); }
-html:not(.dark) .surface-shell { background: rgba(255,255,255,.7); border-color: rgba(0,0,0,.10); box-shadow: 0 24px 80px rgba(0,0,0,.08); }
+.surface-shell { @apply rounded-3xl backdrop-blur-xl border transition-all duration-200; background: rgba(255,255,255,.025); border-color: rgba(255,255,255,.08); box-shadow: 0 24px 80px rgba(0,0,0,.35); }
+.surface-card { @apply rounded-2xl backdrop-blur-xl border transition-all duration-200; background: rgba(255,255,255,.045); border-color: rgba(255,255,255,.12); box-shadow: 0 18px 60px rgba(0,0,0,.35); }
+.surface-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.24); }
+.surface-panel { @apply rounded-2xl border transition-all duration-200; background: rgba(0,0,0,.25); border-color: rgba(255,255,255,.10); }
 
-.surface-card { @apply rounded-2xl backdrop-blur-xl border transition-all duration-200; }
-.dark .surface-card { background: rgba(255,255,255,.045); border-color: rgba(255,255,255,.12); box-shadow: 0 18px 60px rgba(0,0,0,.35); }
-html:not(.dark) .surface-card { background: rgba(255,255,255,.85); border-color: rgba(0,0,0,.14); box-shadow: 0 18px 60px rgba(0,0,0,.10); }
-.surface-card:hover { transform: translateY(-2px); }
-.dark .surface-card:hover { border-color: rgba(255,255,255,.24); }
-html:not(.dark) .surface-card:hover { border-color: rgba(0,0,0,.24); }
-
-.surface-panel { @apply rounded-2xl border transition-all duration-200; }
-.dark .surface-panel { background: rgba(0,0,0,.25); border-color: rgba(255,255,255,.10); }
-html:not(.dark) .surface-panel { background: rgba(0,0,0,.035); border-color: rgba(0,0,0,.10); }
-
-.surface-control { @apply rounded-xl border transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:transform-none; }
-.dark .surface-control { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); color: #f5f5f5; }
-html:not(.dark) .surface-control { background: rgba(255,255,255,.9); border-color: rgba(0,0,0,.14); color: #050505; }
-.surface-control:hover { transform: translateY(-1px); }
-.dark .surface-control:hover { border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.09); }
-html:not(.dark) .surface-control:hover { border-color: rgba(0,0,0,.28); background: #fff; }
+.surface-control { @apply rounded-xl border transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:transform-none; background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); color: #f5f5f5; }
+.surface-control:hover { transform: translateY(-1px); border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.09); }
 .surface-control:active { transform: scale(.98); }
 
-.surface-control-active { @apply rounded-xl border transition-all duration-200; }
-.dark .surface-control-active { @apply bg-white text-black border-white; }
-html:not(.dark) .surface-control-active { @apply bg-black text-white border-black; }
+.surface-control-active { @apply rounded-xl border transition-all duration-200; @apply bg-white text-black border-white; }
+.border-frame { @apply border border-white/10; }
+.border-frame-strong { @apply border border-white/20; }
+.divider-frame { height:1px; background: rgba(255,255,255,.10); }
+.focus-frame:focus-visible { outline:none; box-shadow: 0 0 0 2px rgba(255,255,255,.18),0 0 0 4px rgba(255,255,255,.10); }
+.surface-success { @apply rounded-2xl border; background: rgba(34,197,94,.08); border-color: rgba(34,197,94,.20); }
+.surface-danger { @apply rounded-2xl border; background: rgba(239,68,68,.08); border-color: rgba(239,68,68,.20); }
 
-.border-frame { @apply border border-black/10 dark:border-white/10; }
-.border-frame-strong { @apply border border-black/20 dark:border-white/20; }
-.divider-frame { height:1px; background: rgba(0,0,0,.10); }
-.dark .divider-frame { background: rgba(255,255,255,.10); }
-.focus-frame:focus-visible { outline:none; box-shadow: 0 0 0 2px rgba(255,255,255,.15),0 0 0 4px rgba(255,255,255,.08); }
-html:not(.dark) .focus-frame:focus-visible { box-shadow: 0 0 0 2px rgba(0,0,0,.14),0 0 0 4px rgba(0,0,0,.06); }
-.surface-success { @apply rounded-2xl border; }
-.dark .surface-success { background: rgba(34,197,94,.08); border-color: rgba(34,197,94,.20); }
-html:not(.dark) .surface-success { background: rgba(34,197,94,.10); border-color: rgba(22,163,74,.24); }
-.surface-danger { @apply rounded-2xl border; }
-.dark .surface-danger { background: rgba(239,68,68,.08); border-color: rgba(239,68,68,.20); }
-html:not(.dark) .surface-danger { background: rgba(239,68,68,.10); border-color: rgba(220,38,38,.24); }
-
-.btn-primary-mono { @apply rounded-xl border transition-all duration-200 active:scale-95 border-black bg-black text-white hover:bg-zinc-800 dark:border-white dark:bg-white dark:text-black dark:hover:bg-zinc-200; }
+.btn-primary-mono { @apply rounded-xl border transition-all duration-200 active:scale-95; border-color: rgba(255,255,255,.8); background:#fff; color:#000; }
+.btn-primary-mono:hover { background: rgb(229 231 235); }
 .btn-ghost-mono { @apply surface-control focus-frame; }
 
 @keyframes fadeSlideIn { from { opacity:0; transform: translateX(16px) scale(.98);} to {opacity:1; transform: translateX(0) scale(1);} }
@@ -77,111 +51,26 @@ html:not(.dark) .surface-danger { background: rgba(239,68,68,.10); border-color:
 .animate-terminal-blink { animation: terminalBlink 1s steps(1,end) infinite; }
 .boot-scan-line { position:absolute; left:0; right:0; top:0; height:32px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,.2), transparent); animation: bootScan 1.2s linear infinite; pointer-events:none; }
 
+@keyframes nhLogoReveal { from { opacity: 0; transform: translateY(6px); filter: contrast(0.9);} to { opacity: 1; transform: translateY(0); filter: contrast(1.08);} }
+@keyframes nhLogoSharpShine { 0% { transform: translateX(-140%) skewX(-18deg); opacity: 0; } 7% { opacity: 0.5; } 14% { transform: translateX(260%) skewX(-18deg); opacity: 0; } 100% { transform: translateX(260%) skewX(-18deg); opacity: 0; } }
+@keyframes nhLogoCorePulse { 0%,100% { opacity: 0.6; transform: scale(1); box-shadow: 0 0 8px rgba(125, 211, 252, 0.35);} 50% { opacity: 1; transform: scale(1.18); box-shadow: 0 0 16px rgba(125, 211, 252, 0.65);} }
+@keyframes nhLogoUnderlineScan { 0%,100% { opacity: 0.35; transform: scaleX(0.65);} 50% { opacity: 0.9; transform: scaleX(1);} }
+@keyframes nhLogoMicroGlitch { 0%,100% { transform: translate(0, 0);} 25% { transform: translate(0.8px, -0.4px);} 50% { transform: translate(-0.8px, 0.4px);} 75% { transform: translate(0.4px, 0.6px);} }
+
+.nh-logo-reveal { animation: nhLogoReveal 620ms ease-out both; }
+.nh-logo-sharp-shine { animation: nhLogoSharpShine 5.8s ease-in-out infinite; }
+.nh-logo-core-pulse { animation: nhLogoCorePulse 2.4s ease-in-out infinite; }
+.nh-logo-underline { transform-origin: center; animation: nhLogoUnderlineScan 3.4s ease-in-out infinite; }
+.group\/logo:hover .nh-logo-sharp-shine { animation-duration: 1.4s; }
+.group\/logo:hover .nh-logo-underline { opacity: 1; }
+.group\/logo:hover .nh-logo-glitch { animation: nhLogoMicroGlitch 180ms steps(2,end) 1; }
+.group\/logo:hover { filter: contrast(1.08); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .surface-card,.surface-control,.surface-shell,.surface-panel { transition-duration:1ms !important; }
   .surface-card:hover,.surface-control:hover,.surface-control:active { transform:none !important; }
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
-}
-
-@keyframes logoReveal {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes logoShine {
-  0% {
-    transform: translateX(-120%) skewX(-18deg);
-    opacity: 0;
-  }
-  8% {
-    opacity: 0.3;
-  }
-  18% {
-    transform: translateX(220%) skewX(-18deg);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(220%) skewX(-18deg);
-    opacity: 0;
-  }
-}
-
-@keyframes logoDotPulse {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes logoGlitch {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(1px, -1px);
-  }
-  50% {
-    transform: translate(-1px, 1px);
-  }
-  75% {
-    transform: translate(1px, 1px);
-  }
-}
-
-.logo-reveal {
-  animation: logoReveal 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.logo-shine {
-  animation: logoShine 6s ease-in-out infinite;
-}
-
-.logo-dot-pulse {
-  animation: logoDotPulse 2.4s ease-in-out infinite;
-}
-
-.group\/logo:hover .logo-status-dot {
-  box-shadow: 0 0 18px rgba(56, 189, 248, 0.42);
-}
-
-.group\/logo:hover .logo-dot-pulse {
-  animation-duration: 1.8s;
-}
-
-.logo-hover-glitch::after {
-  content: attr(data-logo-text);
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  color: rgba(125, 211, 252, 0.32);
-}
-
-.group\/logo:hover .logo-hover-glitch::after {
-  opacity: 0.2;
-  animation: logoGlitch 220ms steps(2, end) 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logo-reveal,
-  .logo-shine,
-  .logo-dot-pulse,
-  .logo-hover-glitch,
-  .logo-hover-glitch::after {
-    animation: none !important;
-  }
+  .nh-logo-reveal, .nh-logo-sharp-shine, .nh-logo-core-pulse, .nh-logo-underline { animation: none !important; }
+  .group\/logo:hover { filter: none; }
 }

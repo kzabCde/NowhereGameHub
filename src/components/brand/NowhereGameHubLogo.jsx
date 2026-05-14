@@ -9,38 +9,36 @@ export default function NowhereGameHubLogo({
   animated = true,
 }) {
   const textSize = compact
-    ? 'text-[clamp(1rem,4.5vw,1.4rem)] sm:text-2xl'
-    : 'text-[clamp(2.2rem,9vw,4.8rem)] md:text-6xl lg:text-7xl';
+    ? 'text-[clamp(1rem,4.8vw,1.45rem)] sm:text-2xl'
+    : 'text-[clamp(2.4rem,10vw,5.4rem)] md:text-7xl lg:text-8xl';
 
   const content = (
     <span
       className={[
-        'group/logo relative inline-flex max-w-full min-w-0 items-center gap-2.5 sm:gap-3',
-        'rounded-2xl px-1 py-0.5 transition-all duration-300',
-        'hover:-translate-y-px active:scale-[0.98]',
-        animated ? 'logo-reveal' : '',
+        'group/logo relative inline-flex max-w-full min-w-0 items-center gap-3',
+        'rounded-2xl px-1 py-0.5',
+        'transition-transform duration-300 ease-out',
+        'hover:-translate-y-0.5 active:scale-[0.985]',
+        animated ? 'nh-logo-reveal' : '',
         className,
       ].join(' ')}
     >
       <span
         aria-hidden="true"
-        className={[
-          'logo-status-dot relative h-2.5 w-2.5 shrink-0 rounded-full',
-          'bg-sky-600 dark:bg-sky-300',
-          'shadow-[0_0_14px_rgba(56,189,248,0.28)]',
-          animated ? 'logo-dot-pulse' : '',
-        ].join(' ')}
-      />
+        className={['relative grid h-4 w-4 shrink-0 place-items-center', compact ? 'h-3 w-3' : 'h-4 w-4 md:h-5 md:w-5'].join(' ')}
+      >
+        <span className="absolute inset-0 rotate-45 border border-sky-300/60 shadow-[0_0_14px_rgba(125,211,252,0.18)]" />
+        <span className={['h-1.5 w-1.5 rounded-full bg-sky-200 shadow-[0_0_10px_rgba(125,211,252,0.65)] nh-logo-glitch', animated ? 'nh-logo-core-pulse' : ''].join(' ')} />
+      </span>
 
-      <span className="relative block min-w-0 max-w-full overflow-hidden">
+      <span className="relative block max-w-full overflow-hidden">
         <span
-          data-logo-text="NowhereGameHub"
           className={[
-            'logo-hover-glitch relative z-10 block truncate font-brand font-black leading-none tracking-tight',
-            'bg-gradient-to-r from-neutral-950 via-sky-600 to-neutral-950 bg-clip-text text-transparent',
-            'dark:from-white dark:via-sky-300 dark:to-white',
-            'drop-shadow-[0_0_0_rgba(56,189,248,0)] transition-[filter,text-shadow] duration-300',
-            'group-hover/logo:drop-shadow-[0_0_10px_rgba(56,189,248,0.22)]',
+            'relative z-10 block break-words font-brand font-black uppercase leading-[0.92]',
+            'tracking-[0.08em] text-transparent sm:whitespace-nowrap',
+            'bg-gradient-to-r from-white via-sky-300 to-white bg-clip-text',
+            '[-webkit-text-stroke:1px_rgba(255,255,255,0.16)]',
+            '[text-shadow:0_0_1px_rgba(255,255,255,0.9),0_0_14px_rgba(125,211,252,0.18)]',
             textSize,
           ].join(' ')}
         >
@@ -48,26 +46,16 @@ export default function NowhereGameHubLogo({
         </span>
 
         {animated && (
-          <span
-            aria-hidden="true"
-            className="logo-shine pointer-events-none absolute inset-y-0 -left-1/3 z-20 w-1/3 bg-gradient-to-r from-transparent via-white/45 to-transparent dark:via-white/35"
-          />
+          <>
+            <span aria-hidden="true" className="nh-logo-sharp-shine pointer-events-none absolute inset-y-0 left-0 z-20 w-1/5 bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+            <span aria-hidden="true" className="nh-logo-underline pointer-events-none absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-sky-200/70 to-transparent" />
+          </>
         )}
       </span>
     </span>
   );
 
-  if (!href) {
-    return (
-      <div aria-label="NowhereGameHub home" className="inline-flex max-w-full">
-        {content}
-      </div>
-    );
-  }
+  if (!href) return content;
 
-  return (
-    <Link href={href} aria-label="NowhereGameHub home" className="inline-flex max-w-full min-w-0">
-      {content}
-    </Link>
-  );
+  return <Link href={href} aria-label="NowhereGameHub home" className="inline-flex max-w-full">{content}</Link>;
 }
