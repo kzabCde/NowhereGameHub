@@ -26,5 +26,5 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata = { title: 'NowhereGameHub', description: 'Play small games anywhere, even nowhere.' };
 
 export default function RootLayout({ children }) {
-  return <html lang='th' suppressHydrationWarning className={`${notoThai.variable} ${spaceGrotesk.variable} ${jetBrainsMono.variable}`}><body><ClientBoot />{children}</body></html>;
+  return <html lang='th' suppressHydrationWarning className={`${notoThai.variable} ${spaceGrotesk.variable} ${jetBrainsMono.variable} dark`}><body><ClientBoot />{children}</body></html>;
 }

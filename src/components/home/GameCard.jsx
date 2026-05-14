@@ -5,7 +5,7 @@ export default function GameCard({game,best,isFavorite,onFav,onDetail,onPlay}){
 
   return <div className='group surface-card p-4'>
     <div className='flex items-start justify-between'>
-      <div className='surface-panel border-frame-strong flex h-16 w-16 items-center justify-center text-3xl font-hud tracking-tight text-black dark:text-white bg-white/95 dark:bg-black/35 transition-all duration-300 group-hover:scale-110'>
+      <div className='surface-panel border-frame-strong flex h-16 w-16 items-center justify-center text-3xl font-hud tracking-tight text-white bg-black/35 transition-all duration-300 group-hover:scale-110'>
         {game.icon}
       </div>
       <span className={`rounded-full px-2 py-1 font-hud text-[10px] uppercase tracking-[0.2em] ${available?'surface-control-active':'surface-panel text-secondary'}`}>{available?'Available':'Coming Soon'}</span>

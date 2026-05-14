@@ -4,62 +4,36 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--font-noto-thai), system-ui, sans-serif; @apply min-h-screen antialiased bg-[#f8fafc] text-neutral-950; }
-.dark body { @apply bg-[#030303] text-neutral-50; }
+body { font-family: var(--font-noto-thai), system-ui, sans-serif; @apply min-h-screen antialiased; background:#030303; color:#f8fafc; }
 .font-brand { font-family: var(--font-space-grotesk), var(--font-noto-thai), system-ui, sans-serif; }
 .font-hud { font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: .08em; }
 
-.text-primary { @apply text-neutral-950 dark:text-neutral-50; }
-.text-secondary { @apply text-neutral-600 dark:text-neutral-400; }
-.text-muted { @apply text-neutral-500; }
+.text-primary { color:#f8fafc; }
+.text-secondary { color:#a1a1aa; }
+.text-muted { color:#71717a; }
 
-.app-bg { position: relative; min-height: 100vh; overflow-x: hidden; isolation: isolate; }
-.dark .app-bg { background: radial-gradient(circle at 20% 10%, rgba(255,255,255,.07), transparent 26%), radial-gradient(circle at 80% 0%, rgba(255,255,255,.04), transparent 22%), #030303; color: #fafafa; }
-html:not(.dark) .app-bg { background: radial-gradient(circle at 20% 10%, rgba(0,0,0,.055), transparent 26%), radial-gradient(circle at 80% 0%, rgba(0,0,0,.035), transparent 22%), #f8fafc; color: #050505; }
+.app-bg { position: relative; min-height: 100vh; overflow-x: hidden; isolation: isolate; background: radial-gradient(circle at 20% 10%, rgba(255,255,255,.07), transparent 26%), radial-gradient(circle at 80% 0%, rgba(255,255,255,.04), transparent 22%), #030303; color: #fafafa; }
 .app-bg::after { content:''; position:absolute; inset:0; pointer-events:none; z-index:0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size:32px 32px; opacity:.12; }
-html:not(.dark) .app-bg::after { background-image: linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px); opacity:.08; }
 
-.surface-shell { @apply rounded-3xl backdrop-blur-xl border transition-all duration-200; }
-.dark .surface-shell { background: rgba(255,255,255,.025); border-color: rgba(255,255,255,.08); box-shadow: 0 24px 80px rgba(0,0,0,.35); }
-html:not(.dark) .surface-shell { background: rgba(255,255,255,.7); border-color: rgba(0,0,0,.10); box-shadow: 0 24px 80px rgba(0,0,0,.08); }
+.surface-shell { @apply rounded-3xl backdrop-blur-xl border transition-all duration-200; background: rgba(255,255,255,.025); border-color: rgba(255,255,255,.08); box-shadow: 0 24px 80px rgba(0,0,0,.35); }
+.surface-card { @apply rounded-2xl backdrop-blur-xl border transition-all duration-200; background: rgba(255,255,255,.045); border-color: rgba(255,255,255,.12); box-shadow: 0 18px 60px rgba(0,0,0,.35); }
+.surface-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.24); }
+.surface-panel { @apply rounded-2xl border transition-all duration-200; background: rgba(0,0,0,.25); border-color: rgba(255,255,255,.10); }
 
-.surface-card { @apply rounded-2xl backdrop-blur-xl border transition-all duration-200; }
-.dark .surface-card { background: rgba(255,255,255,.045); border-color: rgba(255,255,255,.12); box-shadow: 0 18px 60px rgba(0,0,0,.35); }
-html:not(.dark) .surface-card { background: rgba(255,255,255,.85); border-color: rgba(0,0,0,.14); box-shadow: 0 18px 60px rgba(0,0,0,.10); }
-.surface-card:hover { transform: translateY(-2px); }
-.dark .surface-card:hover { border-color: rgba(255,255,255,.24); }
-html:not(.dark) .surface-card:hover { border-color: rgba(0,0,0,.24); }
-
-.surface-panel { @apply rounded-2xl border transition-all duration-200; }
-.dark .surface-panel { background: rgba(0,0,0,.25); border-color: rgba(255,255,255,.10); }
-html:not(.dark) .surface-panel { background: rgba(0,0,0,.035); border-color: rgba(0,0,0,.10); }
-
-.surface-control { @apply rounded-xl border transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:transform-none; }
-.dark .surface-control { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); color: #f5f5f5; }
-html:not(.dark) .surface-control { background: rgba(255,255,255,.9); border-color: rgba(0,0,0,.14); color: #050505; }
-.surface-control:hover { transform: translateY(-1px); }
-.dark .surface-control:hover { border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.09); }
-html:not(.dark) .surface-control:hover { border-color: rgba(0,0,0,.28); background: #fff; }
+.surface-control { @apply rounded-xl border transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:transform-none; background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); color: #f5f5f5; }
+.surface-control:hover { transform: translateY(-1px); border-color: rgba(255,255,255,.28); background: rgba(255,255,255,.09); }
 .surface-control:active { transform: scale(.98); }
 
-.surface-control-active { @apply rounded-xl border transition-all duration-200; }
-.dark .surface-control-active { @apply bg-white text-black border-white; }
-html:not(.dark) .surface-control-active { @apply bg-black text-white border-black; }
+.surface-control-active { @apply rounded-xl border transition-all duration-200; @apply bg-white text-black border-white; }
+.border-frame { @apply border border-white/10; }
+.border-frame-strong { @apply border border-white/20; }
+.divider-frame { height:1px; background: rgba(255,255,255,.10); }
+.focus-frame:focus-visible { outline:none; box-shadow: 0 0 0 2px rgba(255,255,255,.18),0 0 0 4px rgba(255,255,255,.10); }
+.surface-success { @apply rounded-2xl border; background: rgba(34,197,94,.08); border-color: rgba(34,197,94,.20); }
+.surface-danger { @apply rounded-2xl border; background: rgba(239,68,68,.08); border-color: rgba(239,68,68,.20); }
 
-.border-frame { @apply border border-black/10 dark:border-white/10; }
-.border-frame-strong { @apply border border-black/20 dark:border-white/20; }
-.divider-frame { height:1px; background: rgba(0,0,0,.10); }
-.dark .divider-frame { background: rgba(255,255,255,.10); }
-.focus-frame:focus-visible { outline:none; box-shadow: 0 0 0 2px rgba(255,255,255,.15),0 0 0 4px rgba(255,255,255,.08); }
-html:not(.dark) .focus-frame:focus-visible { box-shadow: 0 0 0 2px rgba(0,0,0,.14),0 0 0 4px rgba(0,0,0,.06); }
-.surface-success { @apply rounded-2xl border; }
-.dark .surface-success { background: rgba(34,197,94,.08); border-color: rgba(34,197,94,.20); }
-html:not(.dark) .surface-success { background: rgba(34,197,94,.10); border-color: rgba(22,163,74,.24); }
-.surface-danger { @apply rounded-2xl border; }
-.dark .surface-danger { background: rgba(239,68,68,.08); border-color: rgba(239,68,68,.20); }
-html:not(.dark) .surface-danger { background: rgba(239,68,68,.10); border-color: rgba(220,38,38,.24); }
-
-.btn-primary-mono { @apply rounded-xl border transition-all duration-200 active:scale-95 border-black bg-black text-white hover:bg-zinc-800 dark:border-white dark:bg-white dark:text-black dark:hover:bg-zinc-200; }
+.btn-primary-mono { @apply rounded-xl border transition-all duration-200 active:scale-95; border-color: rgba(255,255,255,.8); background:#fff; color:#000; }
+.btn-primary-mono:hover { background: rgb(229 231 235); }
 .btn-ghost-mono { @apply surface-control focus-frame; }
 
 @keyframes fadeSlideIn { from { opacity:0; transform: translateX(16px) scale(.98);} to {opacity:1; transform: translateX(0) scale(1);} }
@@ -77,9 +51,56 @@ html:not(.dark) .surface-danger { background: rgba(239,68,68,.10); border-color:
 .animate-terminal-blink { animation: terminalBlink 1s steps(1,end) infinite; }
 .boot-scan-line { position:absolute; left:0; right:0; top:0; height:32px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,.2), transparent); animation: bootScan 1.2s linear infinite; pointer-events:none; }
 
+
+@keyframes logoWordmarkReveal {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes logoWordmarkShine {
+  0% { transform: translateX(-140%) skewX(-20deg); opacity: 0; }
+  7% { opacity: 0.45; }
+  15% { transform: translateX(240%) skewX(-20deg); opacity: 0; }
+  100% { transform: translateX(240%) skewX(-20deg); opacity: 0; }
+}
+
+@keyframes logoWordmarkScan {
+  0%, 100% { opacity: 0.2; transform: translateY(0); }
+  50% { opacity: 0.75; transform: translateY(1px); }
+}
+
+@keyframes logoWordmarkGlitch {
+  0%, 100% { transform: translate(0, 0); opacity: 0.08; }
+  20% { transform: translate(0.7px, -0.5px); opacity: 0.22; }
+  50% { transform: translate(-0.7px, 0.4px); opacity: 0.12; }
+  80% { transform: translate(0.4px, 0.5px); opacity: 0.18; }
+}
+
+.logo-wordmark-reveal { animation: logoWordmarkReveal 620ms ease-out both; }
+.logo-wordmark-shine {
+  background: linear-gradient(to right, transparent 0%, rgba(255,255,255,.72) 50%, transparent 100%);
+  animation: logoWordmarkShine 5.8s ease-in-out infinite;
+}
+.logo-wordmark-scan {
+  background: linear-gradient(to right, transparent 0%, rgba(186,230,253,.9) 50%, transparent 100%);
+  animation: logoWordmarkScan 3.6s ease-in-out infinite;
+}
+.logo-wordmark-glitch { opacity: .08; }
+.group\/logo:hover .logo-wordmark-main {
+  filter: brightness(1.08);
+  text-shadow: 0 0 1px rgba(255,255,255,0.95), 0 0 12px rgba(186,230,253,0.24);
+}
+.group\/logo:hover .logo-wordmark-glitch {
+  animation: logoWordmarkGlitch 180ms steps(2, end) 1;
+}
+.group\/logo:hover .logo-wordmark-shine { animation-duration: 1.5s; }
+.group\/logo:hover .logo-wordmark-scan { opacity: 1; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .surface-card,.surface-control,.surface-shell,.surface-panel { transition-duration:1ms !important; }
   .surface-card:hover,.surface-control:hover,.surface-control:active { transform:none !important; }
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
+  .logo-wordmark-reveal, .logo-wordmark-shine, .logo-wordmark-scan, .logo-wordmark-glitch { animation: none !important; }
+  .group\/logo:hover .logo-wordmark-main { filter: none; text-shadow: none; }
 }
