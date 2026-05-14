@@ -19,7 +19,7 @@ export default function HeroSection({ onRandom }) {
           </div>
 
           <div className="space-y-3">
-            <NowhereGameHubLogo href='/' animated className='mb-1' />
+            <NowhereGameHubLogo href='/' animated className='mb-1 max-w-full' />
 
             <p className="max-w-2xl font-brand text-xl font-semibold text-secondary md:text-2xl">
               Play small games anywhere, even nowhere.

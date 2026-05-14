@@ -51,26 +51,56 @@ body { font-family: var(--font-noto-thai), system-ui, sans-serif; @apply min-h-s
 .animate-terminal-blink { animation: terminalBlink 1s steps(1,end) infinite; }
 .boot-scan-line { position:absolute; left:0; right:0; top:0; height:32px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,.2), transparent); animation: bootScan 1.2s linear infinite; pointer-events:none; }
 
-@keyframes nhLogoReveal { from { opacity: 0; transform: translateY(6px); filter: contrast(0.9);} to { opacity: 1; transform: translateY(0); filter: contrast(1.08);} }
-@keyframes nhLogoSharpShine { 0% { transform: translateX(-140%) skewX(-18deg); opacity: 0; } 7% { opacity: 0.5; } 14% { transform: translateX(260%) skewX(-18deg); opacity: 0; } 100% { transform: translateX(260%) skewX(-18deg); opacity: 0; } }
-@keyframes nhLogoCorePulse { 0%,100% { opacity: 0.6; transform: scale(1); box-shadow: 0 0 8px rgba(125, 211, 252, 0.35);} 50% { opacity: 1; transform: scale(1.18); box-shadow: 0 0 16px rgba(125, 211, 252, 0.65);} }
-@keyframes nhLogoUnderlineScan { 0%,100% { opacity: 0.35; transform: scaleX(0.65);} 50% { opacity: 0.9; transform: scaleX(1);} }
-@keyframes nhLogoMicroGlitch { 0%,100% { transform: translate(0, 0);} 25% { transform: translate(0.8px, -0.4px);} 50% { transform: translate(-0.8px, 0.4px);} 75% { transform: translate(0.4px, 0.6px);} }
 
-.nh-logo-reveal { animation: nhLogoReveal 620ms ease-out both; }
-.nh-logo-sharp-shine { animation: nhLogoSharpShine 5.8s ease-in-out infinite; }
-.nh-logo-core-pulse { animation: nhLogoCorePulse 2.4s ease-in-out infinite; }
-.nh-logo-underline { transform-origin: center; animation: nhLogoUnderlineScan 3.4s ease-in-out infinite; }
-.group\/logo:hover .nh-logo-sharp-shine { animation-duration: 1.4s; }
-.group\/logo:hover .nh-logo-underline { opacity: 1; }
-.group\/logo:hover .nh-logo-glitch { animation: nhLogoMicroGlitch 180ms steps(2,end) 1; }
-.group\/logo:hover { filter: contrast(1.08); }
+@keyframes logoWordmarkReveal {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes logoWordmarkShine {
+  0% { transform: translateX(-140%) skewX(-20deg); opacity: 0; }
+  7% { opacity: 0.45; }
+  15% { transform: translateX(240%) skewX(-20deg); opacity: 0; }
+  100% { transform: translateX(240%) skewX(-20deg); opacity: 0; }
+}
+
+@keyframes logoWordmarkScan {
+  0%, 100% { opacity: 0.2; transform: translateY(0); }
+  50% { opacity: 0.75; transform: translateY(1px); }
+}
+
+@keyframes logoWordmarkGlitch {
+  0%, 100% { transform: translate(0, 0); opacity: 0.08; }
+  20% { transform: translate(0.7px, -0.5px); opacity: 0.22; }
+  50% { transform: translate(-0.7px, 0.4px); opacity: 0.12; }
+  80% { transform: translate(0.4px, 0.5px); opacity: 0.18; }
+}
+
+.logo-wordmark-reveal { animation: logoWordmarkReveal 620ms ease-out both; }
+.logo-wordmark-shine {
+  background: linear-gradient(to right, transparent 0%, rgba(255,255,255,.72) 50%, transparent 100%);
+  animation: logoWordmarkShine 5.8s ease-in-out infinite;
+}
+.logo-wordmark-scan {
+  background: linear-gradient(to right, transparent 0%, rgba(186,230,253,.9) 50%, transparent 100%);
+  animation: logoWordmarkScan 3.6s ease-in-out infinite;
+}
+.logo-wordmark-glitch { opacity: .08; }
+.group\/logo:hover .logo-wordmark-main {
+  filter: brightness(1.08);
+  text-shadow: 0 0 1px rgba(255,255,255,0.95), 0 0 12px rgba(186,230,253,0.24);
+}
+.group\/logo:hover .logo-wordmark-glitch {
+  animation: logoWordmarkGlitch 180ms steps(2, end) 1;
+}
+.group\/logo:hover .logo-wordmark-shine { animation-duration: 1.5s; }
+.group\/logo:hover .logo-wordmark-scan { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .surface-card,.surface-control,.surface-shell,.surface-panel { transition-duration:1ms !important; }
   .surface-card:hover,.surface-control:hover,.surface-control:active { transform:none !important; }
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
-  .nh-logo-reveal, .nh-logo-sharp-shine, .nh-logo-core-pulse, .nh-logo-underline { animation: none !important; }
-  .group\/logo:hover { filter: none; }
+  .logo-wordmark-reveal, .logo-wordmark-shine, .logo-wordmark-scan, .logo-wordmark-glitch { animation: none !important; }
+  .group\/logo:hover .logo-wordmark-main { filter: none; text-shadow: none; }
 }

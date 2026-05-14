@@ -10,52 +10,62 @@ export default function NowhereGameHubLogo({
 }) {
   const textSize = compact
     ? 'text-[clamp(1rem,4.8vw,1.45rem)] sm:text-2xl'
-    : 'text-[clamp(2.4rem,10vw,5.4rem)] md:text-7xl lg:text-8xl';
+    : 'text-[clamp(2.1rem,10vw,4.8rem)] md:text-6xl lg:text-7xl';
+
+  const alignClass = compact ? 'text-left' : 'text-center sm:text-left';
 
   const content = (
     <span
       className={[
-        'group/logo relative inline-flex max-w-full min-w-0 items-center gap-3',
-        'rounded-2xl px-1 py-0.5',
-        'transition-transform duration-300 ease-out',
-        'hover:-translate-y-0.5 active:scale-[0.985]',
-        animated ? 'nh-logo-reveal' : '',
+        'logo-wordmark group/logo relative inline-block max-w-full min-w-0 overflow-hidden rounded-xl',
+        'transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.985]',
+        animated ? 'logo-wordmark-reveal' : '',
         className,
       ].join(' ')}
     >
       <span
-        aria-hidden="true"
-        className={['relative grid h-4 w-4 shrink-0 place-items-center', compact ? 'h-3 w-3' : 'h-4 w-4 md:h-5 md:w-5'].join(' ')}
+        className={[
+          'logo-wordmark-main relative z-20 block max-w-full break-words font-brand font-black uppercase leading-tight',
+          'tracking-[0.015em] transition-all duration-300',
+          'bg-gradient-to-r from-white via-sky-200 to-white bg-clip-text text-transparent',
+          'drop-shadow-[0_0_18px_rgba(255,255,255,0.10)]',
+          '[-webkit-text-stroke:0.35px_rgba(255,255,255,0.35)]',
+          alignClass,
+          textSize,
+        ].join(' ')}
       >
-        <span className="absolute inset-0 rotate-45 border border-sky-300/60 shadow-[0_0_14px_rgba(125,211,252,0.18)]" />
-        <span className={['h-1.5 w-1.5 rounded-full bg-sky-200 shadow-[0_0_10px_rgba(125,211,252,0.65)] nh-logo-glitch', animated ? 'nh-logo-core-pulse' : ''].join(' ')} />
+        NowhereGameHub
       </span>
 
-      <span className="relative block max-w-full overflow-hidden">
-        <span
-          className={[
-            'relative z-10 block break-words font-brand font-black uppercase leading-[0.92]',
-            'tracking-[0.08em] text-transparent sm:whitespace-nowrap',
-            'bg-gradient-to-r from-white via-sky-300 to-white bg-clip-text',
-            '[-webkit-text-stroke:1px_rgba(255,255,255,0.16)]',
-            '[text-shadow:0_0_1px_rgba(255,255,255,0.9),0_0_14px_rgba(125,211,252,0.18)]',
-            textSize,
-          ].join(' ')}
-        >
-          NowhereGameHub
-        </span>
+      {animated && (
+        <>
+          <span
+            aria-hidden="true"
+            className={[
+              'logo-wordmark-glitch absolute inset-0 z-10 block max-w-full break-words font-brand font-black uppercase leading-tight',
+              'tracking-[0.015em]',
+              'bg-gradient-to-r from-white via-cyan-100 to-white bg-clip-text text-transparent',
+              '[-webkit-text-stroke:0.35px_rgba(255,255,255,0.22)]',
+              alignClass,
+              textSize,
+            ].join(' ')}
+          >
+            NowhereGameHub
+          </span>
 
-        {animated && (
-          <>
-            <span aria-hidden="true" className="nh-logo-sharp-shine pointer-events-none absolute inset-y-0 left-0 z-20 w-1/5 bg-gradient-to-r from-transparent via-white/80 to-transparent" />
-            <span aria-hidden="true" className="nh-logo-underline pointer-events-none absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-sky-200/70 to-transparent" />
-          </>
-        )}
-      </span>
+          <span aria-hidden="true" className="logo-wordmark-shine pointer-events-none absolute inset-y-0 left-0 z-30 w-1/3" />
+
+          <span aria-hidden="true" className="logo-wordmark-scan pointer-events-none absolute inset-x-0 top-0 z-40 h-px" />
+        </>
+      )}
     </span>
   );
 
   if (!href) return content;
 
-  return <Link href={href} aria-label="NowhereGameHub home" className="inline-flex max-w-full">{content}</Link>;
+  return (
+    <Link href={href} aria-label="NowhereGameHub home" className="inline-flex max-w-full min-w-0">
+      {content}
+    </Link>
+  );
 }
