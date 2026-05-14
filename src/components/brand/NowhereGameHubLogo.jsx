@@ -9,8 +9,8 @@ export default function NowhereGameHubLogo({
   animated = true,
 }) {
   const textSize = compact
-    ? 'text-[clamp(1rem,4.8vw,1.45rem)] sm:text-2xl'
-    : 'text-[clamp(2.1rem,10vw,4.8rem)] md:text-6xl lg:text-7xl';
+    ? 'text-[clamp(0.9rem,3.8vw,1.2rem)] sm:text-xl md:text-2xl'
+    : 'text-[clamp(1.55rem,7vw,3.2rem)] sm:text-5xl md:text-6xl lg:text-7xl';
 
   const alignClass = compact ? 'text-left' : 'text-center sm:text-left';
 
@@ -64,7 +64,7 @@ export default function NowhereGameHubLogo({
   if (!href) return content;
 
   return (
-    <Link href={href} aria-label="NowhereGameHub home" className="inline-flex max-w-full min-w-0">
+    <Link href={href} aria-label="NowhereGameHub home" className="block max-w-full min-w-0 overflow-hidden">
       {content}
     </Link>
   );
