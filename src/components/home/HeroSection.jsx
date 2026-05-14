@@ -67,46 +67,6 @@ export default function HeroSection({ onRandom }) {
             </a>
           </div>
         </div>
-
-        <div className="surface-card min-w-0 rounded-3xl p-4 sm:p-5">
-          <div className="mb-4 flex min-w-0 items-center justify-between gap-3">
-            <div className="min-w-0">
-              <p className="font-hud text-[9px] uppercase tracking-[0.18em] text-muted sm:text-[10px] sm:tracking-[0.2em]">
-                System
-              </p>
-
-              <h2 className="mt-1 truncate font-brand text-xl font-black text-primary sm:text-2xl">
-                Ready
-              </h2>
-            </div>
-
-            <div className="shrink-0 rounded-2xl border border-current/10 px-3 py-2 font-hud text-[10px] text-secondary sm:px-4 sm:text-xs">
-              ONLINE
-            </div>
-          </div>
-
-          <div className="grid gap-3">
-            {[
-              ['บันทึกคะแนน', 'localStorage'],
-              ['ระบบเกมแนะนำ', 'Auto Slide'],
-              ['ธีมเว็บไซต์', 'Dark Mode'],
-              ['สถานะระบบ', 'No Database'],
-            ].map(([label, value]) => (
-              <div
-                key={label}
-                className="surface-panel flex min-w-0 items-center justify-between gap-3 rounded-2xl p-3 sm:p-4"
-              >
-                <span className="min-w-0 truncate text-sm text-secondary sm:text-base">
-                  {label}
-                </span>
-
-                <span className="shrink-0 font-hud text-xs text-primary sm:text-sm">
-                  {value}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
